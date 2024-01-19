@@ -1,0 +1,15 @@
+.product-card {
+  display: block;
+  border: 1px solid white;
+  width: auto;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+hr {
+  color: gray;
+}
+
+.add-to-cart-btn{
+  background-color: blue;
+}

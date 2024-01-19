@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
+
+nav {
+    box-shadow: 3px 3px 5px rgba(226, 223, 223, 0.1);
+    align-items: center;
+    display: flex;
+}
+
+.logo {
+    font-family: 'Lemon', serif;
+    display: inline-block;
+    background: linear-gradient(45deg, rgb(252, 0, 231), rgb(0, 204, 255));
+    text-align: center;
+    color: lightgoldenrodyellow;
+    padding: 10px;
+    text-decoration: none;
+    /* Optional: Remove underline for NavLink */
+    box-shadow: 0 0 15px rgba(17, 0, 255, 0.5);
+    /* Shadow properties */
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 15px;
+    transition: all 0.3s ease-in-out;
+}
+
+.logo:hover {
+    box-shadow: 0 0 15px rgba(17, 0, 255, 1);
+    /* Shadow properties */
+}
+
+
+nav ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+nav li {
+    height: 50px;
+}
+
+nav a {
+    height: 100%;
+    padding: 0 30px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    color: gray;
+}
+
+ul li a.active {
+    color: white;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 250px;
+    background-color: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.sidebar hr {
+    width: 100%;
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid gray;
+    margin: 1em 0;
+    padding: 0;
+}
+
+
+.sidebar li {
+    width: 100%;
+}
+
+.sidebar li:first-child {
+    cursor: pointer;
+    padding: 20px 10px;
+}
+
+.sidebar a {
+    width: 100%;
+    color: white;
+}
+
+.menu-btn {
+    display: none;
+}
+
+@media(max-width: 800px) {
+    .hideOnMobile {
+        display: none;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+}
+
+@media (max-width: 430px) {
+    .sidebar {
+        width: 100%;
+    }
+}
+
+.cart-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.cart-counter {
+    height: 18px;
+    width: 18px;
+    font-size: 12px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    position: absolute;
+    top: 5px;
+    right: 0;
+}
+
+.account-link {
+    font-size: larger;
+}
+
+.cartegory {
+    display: block;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
+}
+
+.dropdown {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown p {
+    color: gray;
+}
+
+.dropdown-content {
+    padding: 5px;
+    background-color: white;
+    display: none;
+    position: absolute;
+    width: fit-content;
+    border-radius: 10px;
+    overflow: auto;
+    box-shadow: 0 0 15px rgba(17, 0, 255, 0.5);
+
+}
+
+.dropdown:hover .dropdown-content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    flex-direction: column;
+    width: max-content;
+}
+
+.dropdown-content a {
+    border-radius: 10px;
+    display: block;
+    color: #000000;
+    padding: 7px;
+    text-decoration: none;
+    transition: all 0.4s ease-in-out;
+}
+
+.dropdown-content a:hover {
+    color: #FFFFFF;
+    background-color: black;
+}

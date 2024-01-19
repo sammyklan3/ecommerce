@@ -1,0 +1,46 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+}
+
+.dark-form {
+    border: 2px solid gray;
+    width: min-content;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px 30px;
+    border-radius: 16px;
+    color: white;
+}
+
+input {
+    background-color: transparent;
+    border: 1px solid gray;
+    font-family: 'Poppins', sans-serif;
+    margin: 20px 10px;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    outline: none;
+}
+
+hr {
+    width: 100%;
+}
+
+.btn-submit {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    width: 100%;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-submit:hover {
+    color: black;
+    box-shadow: 0 0 15px rgb(4, 0, 255); /* Shadow properties */
+}
