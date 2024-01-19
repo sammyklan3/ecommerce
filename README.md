@@ -1,2 +1,2 @@
-# This project is using React + Vite.
-# Backend does not currently exist
+This project is using React + Vite.
+Backend does not currently exist
