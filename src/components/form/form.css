@@ -8,7 +8,9 @@
 
 .dark-form {
     border: 2px solid gray;
-    width: min-content;
+    max-width: 400px;
+    width: calc(100% - 20px); /* Adjust width calculation to include margins */
+    margin: 0 10px; /* Add margin to both sides */
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -18,14 +20,31 @@
 }
 
 input {
+    width: 100%;
     background-color: transparent;
     border: thin solid gray;
     font-family: 'Poppins', sans-serif;
-    margin: 20px 10px;
+    margin: 10px 0;
     border-radius: 10px;
     color: white;
     padding: 10px;
+    box-sizing: border-box;
     outline: none;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.checkbox-label input {
+    margin-right: 8px;
+    width: auto;
+}
+
+.checkbox-label span {
+    flex: 1;
 }
 
 hr {
@@ -38,9 +57,10 @@ hr {
     border-radius: 10px;
     width: 100%;
     transition: all 0.2s ease-in-out;
+    margin-top: 10px;
 }
 
 .btn-submit:hover {
     color: black;
-    box-shadow: 0 0 15px rgb(4, 0, 255); /* Shadow properties */
+    box-shadow: 0 0 15px rgb(4, 0, 255);
 }

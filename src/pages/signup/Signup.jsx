@@ -20,6 +20,11 @@ export const Signup = () => {
         label: "Confirm Password:",
         type: "password",
         placeholder: "Confirm Password"
+      },
+      {
+        name: "checkbox",
+        label: "I agree to the terms and conditions",
+        type: "checkbox"
       }
     ];
 
