@@ -21,21 +21,21 @@ export const Form = ({ fields, onSubmit, initialState, title, btnTxt }) => {
   return (
     <div className="form-container">
       <form className="dark-form">
-        <h3>{title}</h3>
+        <h3 className="title">{title}</h3>
         <br />
         <hr />
         <br />
         {fields.map((field) => (
           <div key={field.name}>
             {field.type === 'checkbox' ? (
-              <label>
-                <input
-                  type="checkbox"
-                  checked={formState[field.name] || false}
-                  onChange={(e) => handleChange(e, field.name)}
-                />
-                {field.label}
-              </label>
+              <div className="checkbox-container" key={field.name}>
+              <input
+                type="checkbox"
+                checked={formState[field.name] || false}
+                onChange={(e) => handleChange(e, field.name)}
+              />
+              <label>{field.label}</label>
+            </div>
             ) : (
               <>
                 <label>{field.label}</label>
@@ -49,12 +49,20 @@ export const Form = ({ fields, onSubmit, initialState, title, btnTxt }) => {
             )}
           </div>
         ))}
+
         <br />
         <button type="submit" className="btn-submit" onClick={handleSubmit}>{btnTxt}</button>
       </form>
     </div>
   );
 };
+
+Form.defaultProps = {
+  initialState: {},
+  title: "Default Title",
+  btnTxt: "Submit",
+};
+
 
 Form.propTypes = {
   onSubmit: PropTypes.func.isRequired,

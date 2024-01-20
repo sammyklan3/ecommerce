@@ -9,10 +9,11 @@
 .dark-form {
     border: 2px solid gray;
     max-width: 400px;
-    width: calc(100% - 20px); /* Adjust width calculation to include margins */
-    margin: 0 10px; /* Add margin to both sides */
+    width: calc(100% - 20px);
+    /* Adjust width calculation to include margins */
+    margin: 0 10px;
+    /* Add margin to both sides */
     display: flex;
-    align-items: center;
     flex-direction: column;
     padding: 20px 30px;
     border-radius: 16px;
@@ -32,19 +33,9 @@ input {
     outline: none;
 }
 
-.checkbox-label {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.checkbox-label input {
-    margin-right: 8px;
-    width: auto;
-}
-
-.checkbox-label span {
-    flex: 1;
+.confirm-password {
+    width: 100%;
+    /* Set Confirm Password field to full width */
 }
 
 hr {
@@ -63,4 +54,107 @@ hr {
 .btn-submit:hover {
     color: black;
     box-shadow: 0 0 15px rgb(4, 0, 255);
+}
+
+.checkbox-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* Align items vertically in the center */
+    margin-bottom: 10px;
+    /* Add or adjust margin to control the gap */
+}
+
+.checkbox-container input {
+    margin-right: 10px;
+    width: auto;
+    /* Add or adjust margin to control the space between checkbox and label */
+}
+
+.title {
+    text-align: center;
+}
+
+
+/* Apply styles when the viewport width is between 600 and 500 pixels */
+@media screen and (min-width: 200px) and (max-width: 500px) {
+
+    /* CSS rules for screens between 200 and 500 pixels wide */
+    .form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: black;
+    }
+
+    .dark-form {
+        border: 2px solid gray;
+        max-width: 400px;
+        width: calc(100% - 20px);
+        /* Adjust width calculation to include margins */
+        margin: 0;
+        /* Add margin to both sides */
+        display: flex;
+        flex-direction: column;
+        padding: 22px;
+        border-radius: 16px;
+        color: white;
+    }
+
+    input {
+        width: max-content;
+        background-color: transparent;
+        border: thin solid gray;
+        font-family: 'Poppins', sans-serif;
+        margin: 10px 0;
+        border-radius: 10px;
+        color: white;
+        padding: 10px;
+        box-sizing: border-box;
+        outline: none;
+    }
+
+    .confirm-password {
+        width: 100%;
+        /* Set Confirm Password field to full width */
+    }
+
+    hr {
+        width: 100%;
+    }
+
+    .btn-submit {
+        background-color: white;
+        color: black;
+        border-radius: 10px;
+        width: 100%;
+        transition: all 0.2s ease-in-out;
+        margin-top: 10px;
+    }
+
+    .btn-submit:hover {
+        color: black;
+        box-shadow: 0 0 15px rgb(4, 0, 255);
+    }
+
+    .checkbox-container {
+        text-wrap: nowrap;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        /* Align items vertically in the center */
+        margin-bottom: 10px;
+        /* Add or adjust margin to control the gap */
+    }
+
+    .checkbox-container input {
+        margin-right: 10px;
+        width: auto;
+        /* Add or adjust margin to control the space between checkbox and label */
+    }
+}
+
+.title {
+    text-align: center;
 }
