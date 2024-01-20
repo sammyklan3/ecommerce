@@ -1,27 +1,24 @@
 import "./navbar.css";
 import { NavLink } from "react-router-dom";
-import { FiShoppingCart } from "react-icons/fi";
-import { FaUser } from "react-icons/fa";
+import { FiShoppingCart, FiFilter } from "react-icons/fi";
+import { FaUser, } from "react-icons/fa";
 import { Button } from "../button/button";
 import { BsApple } from "react-icons/bs";
-import { SiSamsung } from "react-icons/si";
-import { SiHuawei } from "react-icons/si";
-import { SiXiaomi } from "react-icons/si";
-import { SiNokia } from "react-icons/si";
-import { SiOneplus } from "react-icons/si";
-import { FiFilter } from "react-icons/fi";
+import { SiSamsung, SiHuawei, SiXiaomi, SiNokia, SiOneplus } from "react-icons/si";
 
-function showSidebar() {
-  const sidebar = document.querySelector(".sidebar");
-  sidebar.style.display = "flex";
-}
 
-function closeSidebar() {
-  const sidebar = document.querySelector(".sidebar");
-  sidebar.style.display = "none";
-}
 
 export const Navbar = () => {
+
+  function showSidebar() {
+    const sidebar = document.querySelector(".sidebar");
+    sidebar.style.display = "flex";
+  }
+
+  function closeSidebar() {
+    const sidebar = document.querySelector(".sidebar");
+    sidebar.style.display = "none";
+  }
 
   return (
     <nav>
