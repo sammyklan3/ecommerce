@@ -4,6 +4,7 @@ import { Checkout } from "./pages/checkout/Checkout";
 import { Cart} from "./pages/cart/Cart";
 import { NoPage } from './pages/nopage/NoPage';
 import { Login } from './pages/login/Login';
+import { Signup } from './pages/signup/signup';
 import { Account } from './pages/account/Account';
 import './App.css'
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login />}/>
         <Route path="*" element={<NoPage />} />
         <Route path="/account" element={<Account />}/>
+        <Route path="/signup" element={<Signup />}/>
       </Routes>
   );
 }

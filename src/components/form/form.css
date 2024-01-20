@@ -19,7 +19,7 @@
 
 input {
     background-color: transparent;
-    border: 1px solid gray;
+    border: thin solid gray;
     font-family: 'Poppins', sans-serif;
     margin: 20px 10px;
     border-radius: 10px;
