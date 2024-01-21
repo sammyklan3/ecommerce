@@ -9,18 +9,20 @@ export const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const API_URL = "http://localhost:3001/api/products";
+    const API_URL = "http://200.134.155.176:3000/products";
 
     const fetchData = async () => {
       try {
         // Make your API call or fetch data here
         const response = await fetch(API_URL);
+
         const result = await response.json();
 
         // Simulate data fetching for 2 seconds
         await new Promise(resolve => setTimeout(resolve, 2000));
 
         // After data is fetched, update the state
+        console.log(result);
         setData(result);
         setLoading(false);
 
@@ -47,14 +49,20 @@ export const Home = () => {
     <>
       <Navbar />
       <div className="container">
-        {loading ? (
+        {error ? (
+          // Show error message if there's an error
+          <p>Error: {error.message}</p>
+        ) : loading ? (
           // Show loading spinner or loading box while data is being fetched
           <div className="loading-spinner"></div>
-        ) : (
+        ) : data && data ? (
           // Render the component
-          data && data.map((product) => (
+          data.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))
+        ) : (
+          // Show a message if no data is available
+          <p>No data available</p>
         )}
       </div>
     </>
