@@ -2,6 +2,8 @@ import "./home.css";
 import { Navbar } from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
+import { Loader } from "../../components/loader/loader";
+import { Banner } from "../../components/banner/Banner";
 
 export const Home = () => {
   const [data, setData] = useState(null);
@@ -9,7 +11,7 @@ export const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const API_URL = "http://200.134.155.176:3000/products";
+    const API_URL = "http://localhost:3000/products";
 
     const fetchData = async () => {
       try {
@@ -22,7 +24,6 @@ export const Home = () => {
         await new Promise(resolve => setTimeout(resolve, 2000));
 
         // After data is fetched, update the state
-        console.log(result);
         setData(result);
         setLoading(false);
 
@@ -48,17 +49,20 @@ export const Home = () => {
   return (
     <>
       <Navbar />
+
+      { data ? (<Banner />) : ""}
+
       <div className="container">
         {error ? (
           // Show error message if there's an error
           <p>Error: {error.message}</p>
         ) : loading ? (
           // Show loading spinner or loading box while data is being fetched
-          <div className="loading-spinner"></div>
+          <Loader />
         ) : data && data ? (
           // Render the component
-          data.map((product) => (
-            <ProductCard key={product.id} product={product} />
+          data.map((product, index) => (
+            <ProductCard key={index} product={product} />
           ))
         ) : (
           // Show a message if no data is available
@@ -67,5 +71,5 @@ export const Home = () => {
       </div>
     </>
   );
-  
+
 };

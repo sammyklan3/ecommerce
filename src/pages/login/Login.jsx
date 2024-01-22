@@ -65,8 +65,7 @@ export const Login = () => {
         reverseOrder={false}
       />
     <div>
-
-      {error ? toast.success(message) : toast.error(error)}
+      {error ? toast.error(error) : toast.success(message)}
       < Form fields={fields} onSubmit={onSubmit} initialState={initialState} title="Login" btnTxt="Sign In" />
     </div>
     </>

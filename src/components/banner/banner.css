@@ -1,0 +1,15 @@
+.banner {
+  margin: 20px auto;
+  width: 95%;
+  border-radius: 10px;
+  height: 400px;
+  background-color: gray;
+}
+
+@media only screen and (min-width: 200px) and (max-width:760px){
+  .banner {
+    width: 100%;
+    border-radius: 0;
+    height: 270px;
+  }
+}

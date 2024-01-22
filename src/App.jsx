@@ -6,6 +6,8 @@ import { NoPage } from './pages/nopage/NoPage';
 import { Login } from './pages/login/Login';
 import { Signup } from './pages/signup/signup';
 import { Account } from './pages/account/Account';
+import { ProductCreation } from './admin/productCreation/ProductCreation';
+
 import './App.css'
 
 function App() {
@@ -16,9 +18,10 @@ function App() {
         <Route path="/checkout" element={<Checkout />}/>
         <Route path="/cart" element={<Cart />}/>
         <Route path="/login" element={<Login />}/>
-        <Route path="*" element={<NoPage />} />
         <Route path="/account" element={<Account />}/>
         <Route path="/signup" element={<Signup />}/>
+        <Route path="/admin/createproduct" element={< ProductCreation />}/>
+        <Route path="*" element={<NoPage />} />
       </Routes>
   );
 }

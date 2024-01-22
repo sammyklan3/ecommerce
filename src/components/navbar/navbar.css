@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
 
 nav {
-    box-shadow: 3px 3px 5px rgba(226, 223, 223, 0.1);
+    box-shadow: 3px 3px 5px rgba(255, 255, 255, 0.192);
     align-items: center;
     display: flex;
 }
@@ -61,7 +61,7 @@ ul li a.active {
     height: 100vh;
     width: 250px;
     background-color: rgba(10, 9, 9, 0.726);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(90px);
     z-index: 999;
     box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
     display: none;
@@ -99,22 +99,6 @@ ul li a.active {
 
 .menu-btn {
     display: none;
-}
-
-@media(max-width: 800px) {
-    .hideOnMobile {
-        display: none;
-    }
-
-    .menu-btn {
-        display: block;
-    }
-}
-
-@media (max-width: 430px) {
-    .sidebar {
-        width: 100%;
-    }
 }
 
 .cart-link {
@@ -193,3 +177,20 @@ ul li a.active {
     color: #FFFFFF;
     background-color: black;
 }
+
+@media(max-width: 800px) {
+    .hideOnMobile {
+        display: none;
+    }
+
+    .menu-btn {
+        display: block;
+    }
+}
+
+@media (max-width: 430px) {
+    .sidebar {
+        width: 100%;
+    }
+}
+
