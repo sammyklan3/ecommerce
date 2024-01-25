@@ -5,10 +5,13 @@ import { FaUser, } from "react-icons/fa";
 import { Button } from "../button/button";
 import { BsApple } from "react-icons/bs";
 import { SiSamsung, SiHuawei, SiXiaomi, SiNokia, SiOneplus } from "react-icons/si";
-
+import { CartContext } from "../../context/Cart";
+import { useContext} from "react";
 
 
 export const Navbar = () => {
+
+  const { cartItems } = useContext(CartContext);
 
   function showSidebar() {
     const sidebar = document.querySelector(".sidebar");
@@ -81,7 +84,7 @@ export const Navbar = () => {
         <li>
           <NavLink to="/cart" className="cart-link">
             <FiShoppingCart />
-            <p className="cart-counter">0</p>
+            <p className="cart-counter">{cartItems.length}</p>
           </NavLink>
         </li>
 
