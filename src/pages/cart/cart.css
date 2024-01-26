@@ -48,7 +48,6 @@
 .cart-item-details {
     display: block;
     place-items: center;
-    
     padding: 5px;
 }
 
@@ -127,14 +126,14 @@
 
 @media only screen and (min-width: 200px) and (max-width: 768px) {
     body{
-        font-size: smaller;
+        font-size: 10px;
     }
     .cart-body{
         display: block;
     }
 
     .cart-container{
-        margin: 20px 2px;
+        margin: 20px 10px;
         overflow-y: visible;
         height: auto;
         width: auto;
@@ -147,6 +146,9 @@
 
     .checkout-box{
         width: auto;
+    }
+    .cart-item-img{
+        height: 150px;
     }
 }
 

@@ -103,7 +103,7 @@ hr {
     }
 
     input {
-        width: max-content;
+        width: 100%;
         background-color: transparent;
         border: thin solid gray;
         font-family: 'Poppins', sans-serif;
