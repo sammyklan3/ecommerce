@@ -11,7 +11,7 @@ export const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const API_URL = "http://localhost:3000/products";
+    const API_URL = "http://200.134.155.163:3000/products";
 
     const fetchData = async () => {
       try {
