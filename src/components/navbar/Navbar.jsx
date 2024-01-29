@@ -6,12 +6,30 @@ import { Button } from "../button/button";
 import { BsApple } from "react-icons/bs";
 import { SiSamsung, SiHuawei, SiXiaomi, SiNokia, SiOneplus } from "react-icons/si";
 import { CartContext } from "../../context/Cart";
-import { useContext} from "react";
+import { useContext, useState, useEffect } from "react";
 
 
 export const Navbar = () => {
 
   const { cartItems } = useContext(CartContext);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollPos = window.scrollY;
+
+      setVisible(prevScrollPos > currentScrollPos || currentScrollPos === 0);
+      setPrevScrollPos(currentScrollPos);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [prevScrollPos, visible]);
+
 
   function showSidebar() {
     const sidebar = document.querySelector(".sidebar");
@@ -66,7 +84,7 @@ export const Navbar = () => {
       </ul>
 
       {/* Wide screens navigation */}
-      <ul>
+      <ul style={{ top: visible ? "0" : "-100px", transition: "top 0.5s" }}>
 
         <div className="dropdown hideOnMobile">
           <p>Filter&nbsp;<FiFilter /></p>
