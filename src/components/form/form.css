@@ -75,6 +75,19 @@ hr {
     text-align: center;
 }
 
+.error-container {
+    text-align: center;
+    padding: 10px;
+    border-radius: 14px;
+    align-items: center;
+    background-color: rgb(48, 14, 14);
+    transition: all 0.6s ease-in-out;
+}
+
+.error-txt {
+    color: red;
+}
+
 
 /* Apply styles when the viewport width is between 600 and 500 pixels */
 @media screen and (min-width: 200px) and (max-width: 500px) {

@@ -2,7 +2,7 @@ import "./form.css";
 import { useState } from "react";
 import PropTypes from 'prop-types';
 
-export const Form = ({ fields, onSubmit, initialState, title, btnTxt}) => {
+export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error }) => {
   const [formState, setFormState] = useState(initialState);
 
   const handleChange = (e, fieldName) => {
@@ -16,6 +16,7 @@ export const Form = ({ fields, onSubmit, initialState, title, btnTxt}) => {
     e.preventDefault();
     onSubmit(formState);
   };
+
 
   return (
     <div className="form-container">
@@ -57,9 +58,15 @@ export const Form = ({ fields, onSubmit, initialState, title, btnTxt}) => {
         <button type="submit" className="btn-submit" onClick={handleSubmit}>
           {btnTxt}
         </button>
+        <br />
+        {error ? (
+          <div className="error-container">
+            <p className="error-txt">{error}</p>
+          </div>
+        ) : null}
       </form>
 
-      
+
     </div>
   );
 };

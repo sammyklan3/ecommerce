@@ -1,8 +1,8 @@
 import { Form } from "../../components/form/Form";
 import { useState } from "react";
-import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { axiosInstance } from "../../api/axiosInstance";
 
 export const Login = () => {
   const { login } = useAuth();
@@ -27,42 +27,52 @@ export const Login = () => {
   const onSubmit = async (formData) => {
     try {
       // Sending request to the server
-      const response = await fetch( /* process.env.REACT_APP_API_ENDPOINT || */ "http://localhost:3000/login", {
-        method: "POST",
+      const response = await axiosInstance.post("/login", formData, {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
       });
 
-      // If response is not 200
-      if (!response.ok) {
+      // If response status is not 200
+      if (response.status !== 200) {
         setError("Username or password incorrect");
 
         // Clear the password and username field for security reasons
         formData.password = "";
         formData.username = "";
+
+        // Set a timer to clear the error after 3 seconds
+        setTimeout(() => {
+          setError(null);
+        }, 8000);
+
         return;
       }
 
-      // If response is 200
-      const data = await response.json();
+      // If response status is 200
+      const data = response.data;
       // Storing the token in localStorage
       login(data.token);
-      toast.success(data.message);
       // Redirect upon successful login
       navigate("/");
 
       // Catching the error
     } catch (error) {
-      console.error('Login error:', error);
+      console.error(error);
       setError('Authentication failed. Please check your credentials.');
       // Clear the password and username field for security reasons
       formData.password = "";
       formData.username = "";
+
+      // Set a timer to clear the error after 3 seconds
+      setTimeout(() => {
+        setError(null);
+      }, 8000);
+
       return;
     }
   };
+
 
   const initialState = {
     username: "",
@@ -72,9 +82,8 @@ export const Login = () => {
   return (
     <>
       <div>
-        <Toaster position="top-center" reverseOrder={false} />
-        {error ? toast.error(error) : null}
-        <Form fields={fields} onSubmit={onSubmit} initialState={initialState} title="Login" btnTxt="Sign In" />
+        <Form fields={fields} onSubmit={onSubmit} initialState={initialState} title="Login" btnTxt="Sign In" error={error} />
+        
       </div>
     </>
   );
