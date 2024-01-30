@@ -7,9 +7,12 @@ import { BsApple } from "react-icons/bs";
 import { SiSamsung, SiHuawei, SiXiaomi, SiNokia, SiOneplus } from "react-icons/si";
 import { CartContext } from "../../context/Cart";
 import { useContext, useState, useEffect } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 
 export const Navbar = () => {
+
+  const { token, logout, currentUsername } = useAuth();
 
   const { cartItems } = useContext(CartContext);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -73,14 +76,19 @@ export const Navbar = () => {
           <li><a href="#"><SiOneplus />&nbsp;&nbsp; OnePlus</a></li>
         </ul>
         {/* Login Link */}
-        <li>
-          <NavLink to="/login">
-            < Button text="Login" />
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to="/checkout">checkout</NavLink>
-        </li>
+        {token ? (
+          <li>
+            <Button text="Logout" onClick={logout} />
+          </li>
+        ) : (
+          <li>
+            <NavLink to="/login">
+              < Button text="Login" />
+            </NavLink>
+          </li>
+        )
+        }
+
       </ul>
 
       {/* Wide screens navigation */}
@@ -106,24 +114,32 @@ export const Navbar = () => {
           </NavLink>
         </li>
 
-        {/* Account  Link */}
-        <li>
-          <NavLink to="/account" className="account-link">
-            <FaUser />
-          </NavLink>
-        </li>
+        {/* Conditional  */}
+        {token ? (
+          <>
+            {/* Render the account Icon if the user has signed in */}
+            < li >
+              <NavLink to="/account" className="account-link">
+                <FaUser />
+              </NavLink>
+            </li>
+            <li>
+              <p>{currentUsername}</p>
+            </li>
 
-        {/* Login Link */}
-        <li>
-          <NavLink to="/login" className="hideOnMobile">
-            < Button text="Login" />
-          </NavLink>
-        </li>
+          </>
+        ) : (
+          <li>
+            <NavLink to="/login" className="hideOnMobile">
+              <Button text="Login" />
+            </NavLink>
+          </li>
+        )}
         <li onClick={showSidebar} className=" menu-btn">
           <a href="#"><svg xmlns="http://www.w3.org/2000/svg" height="26" fill="white" viewBox="0 -960 960 960" width="26"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" /></svg></a>
         </li>
       </ul>
-    </nav>
+    </nav >
 
   );
 }
