@@ -1,0 +1,80 @@
+.navigation {
+    background-color: rgb(41, 40, 40);
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0px;
+    width: 16%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: none;
+}
+
+.nav-wrapper li a{
+    text-decoration: none;
+    color: rgb(161, 158, 158);
+}
+
+.nav-wrapper li a:hover{
+    text-decoration: none;
+    color: rgb(209, 206, 206);
+}
+
+.nav-wrapper li a:active{
+    color: rgb(209, 206, 206);
+}
+
+.nav-wrapper ul {
+    color: rgb(161, 158, 158); 
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.admin-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.admin-footer hr {
+    width: 90%;
+    border-color: gray;
+}
+
+.admin-footer ul {
+    display: flex;
+    flex-direction: column;
+    align-items: normal;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.admin-footer li {
+    list-style: none;
+}
+
+.admin-footer li a {
+    text-decoration: none;
+    color: rgb(161, 158, 158);
+}
+
+.admin-footer li a:hover {
+    color: rgb(209, 206, 206);
+}
+
+.admin-footer li a:active {
+    color: rgb(209, 206, 206);
+}
+
+@media only screen and (min-width: 200px) and (max-width: 768px){
+    .navigation {
+        display: none;
+    }
+}
+

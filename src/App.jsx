@@ -4,7 +4,7 @@ import { Checkout } from "./pages/checkout/Checkout";
 import { Cart } from "./pages/cart/Cart";
 import { NoPage } from './pages/nopage/NoPage';
 import { Login } from './pages/login/Login';
-
+import { Admin } from "./admin/pages/home/Admin";
 import { Signup } from "./pages/signup/Signup";
 import { Account } from './pages/account/Account';
 import { ProductCreation } from './admin/productCreation/ProductCreation';
@@ -18,6 +18,7 @@ function App() {
     
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />

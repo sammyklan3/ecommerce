@@ -1,0 +1,191 @@
+*, html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.body-container {
+    padding: 0;
+    display: flex;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    color: gray;
+}
+
+.admin-header-icons {
+    display: flex;
+    gap: 20px;
+    place-items: center;
+}
+
+.notification-bell {
+    font-size: 28px;
+}
+
+.notification-counter {
+    height: 17px;
+    width: 16px;
+    font-size: 12px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    position: absolute;
+    top: 8px;
+    right: 77px;
+}
+
+.admin-header-profile {
+    height: 50px;
+    border-radius: 18px;
+}
+
+.admin-container {
+    background-color: transparent;
+    width: 100%;
+    padding: 10px;
+}
+
+.total-sales {
+    background-color: white;
+    color: black;
+    width: max-content;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.total-earnings {
+    background-color: rgb(10, 99, 14);
+    width: max-content;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.total-orders {
+    background-color: rgb(15, 31, 119);
+    width: max-content;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.admin-main-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.top-section {
+    display: flex;
+    justify-content: space-between;
+    gap: 85px;
+}
+
+.container-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.admin-sidebar-container {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.order-list {
+    background-color: rgb(41, 40, 40);
+    border-radius: 12px;
+    padding: 12px;
+    width: 100%;
+}
+
+.order-list-item {
+    text-decoration: none;
+}
+
+.order-list-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-list li {
+    list-style: none;
+}
+
+.analytics-graph {
+    background-color: rgb(41, 40, 40);
+    height: 20em;
+    padding: 5px;
+    border-radius: 10px;
+
+}
+
+.analytics-graph-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Top selling section */
+.top-selling{
+    background-color: rgb(41, 40, 40);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.top-selling-item {
+    justify-content: space-between;
+}
+
+.top-selling-item-list li{
+    display: flex;
+    place-items: center;
+    gap: 80px;
+}
+
+.top-selling-item-list li :first-child {
+    display: flex;
+    place-items: center;
+    gap: 5px;
+}
+
+.top-selling-header{
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-selling-img {
+    height: 50px;
+    border-radius: 10px;
+}
+
+.top-selling-content {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.top-selling-content li {
+    list-style: none;
+}
+
+@media  only screen and (min-width: 200px) and (max-width: 768px) {
+    body {
+        font-size: 15px;
+    }
+    .container-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .top-section {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+}
