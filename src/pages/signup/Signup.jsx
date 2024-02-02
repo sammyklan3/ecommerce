@@ -85,7 +85,6 @@ export const Signup = () => {
 
       // Catching the error
     } catch (error) {
-      console.error('Account Creation error:', error);
       setError("Account creation error");
       // Clear the password and username field for security reasons
       formData.password = "";

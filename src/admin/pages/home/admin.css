@@ -82,7 +82,7 @@
 .top-section {
     display: flex;
     justify-content: space-between;
-    gap: 85px;
+    gap: 45px;
 }
 
 .container-group {

@@ -54,7 +54,7 @@ export const Login = () => {
       // Storing the token in localStorage
       login(data.token);
       // Redirect upon successful login
-      navigate("/");
+      navigate(-1);
 
       // Catching the error
     } catch (error) {

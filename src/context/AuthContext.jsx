@@ -1,37 +1,37 @@
 // src/AuthContext.js
 
 import { createContext, useContext, useState, useEffect } from 'react';
+import { axiosInstance } from '../api/axiosInstance';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(() => localStorage.getItem("token") || '');
   const [currentUsername, setCurrentUsername] = useState(null);
+  const [role, setRole] = useState(null);
 
   useEffect(() => {
-    const API_URL = "http://localhost:3000/currentUser";
 
     const fetchData = async () => {
       try {
 
-        const response = await fetch(API_URL, {
-          method: 'GET',
+        const response = await axiosInstance.get("currentUser", {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': ` Bearer ${token}`,
           },
         });
 
-        const result = await response.json();
+        setRole(response.data.role);
 
-        setCurrentUsername(result.user);
+        setCurrentUsername(response.data.user);
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [token]);
 
   const login = (newToken) => {
     localStorage.setItem('token', newToken);
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, logout, currentUsername }}>
+    <AuthContext.Provider value={{ token, login, logout, currentUsername, role }}>
       {children}
     </AuthContext.Provider>
   );

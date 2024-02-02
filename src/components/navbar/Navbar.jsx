@@ -12,7 +12,7 @@ import { useAuth } from "../../context/AuthContext";
 
 export const Navbar = () => {
 
-  const { token, logout, currentUsername } = useAuth();
+  const { token, logout } = useAuth();
 
   const { cartItems } = useContext(CartContext);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -123,10 +123,6 @@ export const Navbar = () => {
                 <FaUser />
               </NavLink>
             </li>
-            <li>
-              <p>{currentUsername}</p>
-            </li>
-
           </>
         ) : (
           <li>
