@@ -25,7 +25,7 @@ export const Cart = () => {
               <div className="cart-item" key={item.id}>
 
                 <div className="cart-item-content">
-                  <img src={item.Image || "https://via.placeholder.com/400"} alt={item.Name} className="cart-item-img" />
+                  <img src={item.Images || "https://via.placeholder.com/400"} alt={item.Name} className="cart-item-img" />
                   <div className="cart-item-details">
                     <h1 className="cart-item-name">{item.Name}</h1>
                     <p className="cart-item-desc">{item.Description}</p>

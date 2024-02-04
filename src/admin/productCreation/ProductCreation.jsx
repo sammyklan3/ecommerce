@@ -1,6 +1,8 @@
+// Updated Component
 import { useState } from 'react';
 import "./ProductCreation.css";
 import { Navbar } from "../../components/navbar/Navbar";
+import { axiosInstance } from '../../api/axiosInstance';
 
 export const ProductCreation = () => {
   const [formData, setFormData] = useState({
@@ -9,91 +11,152 @@ export const ProductCreation = () => {
     price: "",
     stockquantity: "",
     model: "",
-    image: "",
+    category: "",
+    image: undefined,
   });
 
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    const { name, value, type, files } = e.target;
+
+    if (type === "file") {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: files[0],
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // You can add logic to send the form data to a server here
+
+    const formDataToSend = new FormData();
+    formDataToSend.append("name", formData.name);
+    formDataToSend.append("description", formData.description);
+    formDataToSend.append("price", formData.price);
+    formDataToSend.append("stockquantity", formData.stockquantity);
+    formDataToSend.append("model", formData.model);
+    formDataToSend.append("category", formData.category);
+
+    if (formData.image) {
+      formDataToSend.append("image", formData.image);
+    }
+
+    try {
+      const response = await axiosInstance.post("/createProducts", formDataToSend, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      setSuccess(response.data);
+      console.log(response.message);
+
+    } catch (error) {
+      console.log(error)
+      setError(error.response.data.error)
+    }
   };
 
   return (
     <>
       <Navbar />
-      <div className="form-container">
-        <form onSubmit={handleSubmit} className='dark-form' encType="multipart/form-data">
-          {/* Product name field */}
-          <label>
-            Product Name:
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </label>
-          <br />
-          {/* Description feild */}
-          <label>
-            Product Description:
-            <input
-              type="text"
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-            />
-          </label>
-          <br />
-
-          {/* Stockquantity */}
-          <label>
-            Number of items:
-            <input
-              type="number"
-              name="stockquantity"
-              value={formData.stockquantity}
-              onChange={handleChange}
-            />
-          </label>
-          <br />
-
-          {/* Image*/}
-          <div className="custom-file-input">
+      <div className="product-creation-container">
+        <form className='product-creation-form' encType="multipart/form-data">
+          <div className="form-row">
+            <label>
+              Product Name:
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div className="form-row">
+            <label>
+              Product Description:
+              <input
+                type="text"
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div className="form-row">
+            <label>
+              Number of items:
+              <input
+                type="number"
+                name="stockquantity"
+                value={formData.stockquantity}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div className="form-row">
+            <label>
+              Model:
+              <input
+                type="text"
+                name="model"
+                value={formData.model}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div className="form-row">
+            <label>
+              Category:
+              <input
+                type="text"
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div className="form-row">
+            <label>
+              Product Price:
+              <input
+                type="number"
+                name="price"
+                value={formData.price}
+                onChange={handleChange}
+              />
+            </label>
+          </div>
+          <div className="form-row file-input">
             <input
               type="file"
               id="fileInput"
               name="image"
-              value={formData.image}
               onChange={handleChange}
               className="inputfile"
             />
             <label htmlFor="fileInput">Upload Image</label>
-            </div>
-          
-          <br />
-
-          {/* Price field */}
-          <label>
-            Product Price:
-            <input
-              type="number"
-              name="price"
-              value={formData.price}
-              onChange={handleChange}
-            />
-          </label>
-
-          <button type="submit">Submit</button>
+          </div>
+          <div className="form-row">
+            <button type="submit" onClick={handleSubmit} className="submitBtn">Submit</button>
+          </div>
         </form>
+
+        {error ? (
+          <span className="error">Error: {error}</span>
+        ) : success ?(
+          <span className="success">{success}</span>
+        ) : null
+      }
       </div>
     </>
   );

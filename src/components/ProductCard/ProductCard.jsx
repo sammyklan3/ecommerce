@@ -5,7 +5,7 @@ import { BsApple } from "react-icons/bs";
 import { DiAndroid } from "react-icons/di";
 import { SiSamsung, SiHuawei, SiXiaomi, SiNokia, SiOneplus } from "react-icons/si";
 import { CartContext } from "../../context/Cart";
-import { useEffect, useContext, useState } from "react";
+import { useContext } from "react";
 
 
 
@@ -20,7 +20,7 @@ export const ProductCard = ({ product }) => {
     <div>
       <div className="product-card">
         <div>
-          <img src={ product.Image || "https://via.placeholder.com/400"} alt={product.Name} className="product-image" />
+          <img src={product.Images || "https://via.placeholder.com/400"} alt={product.Name} className="product-image" />
         </div>
         < hr />
         <div className="product-details">
@@ -55,11 +55,11 @@ export const ProductCard = ({ product }) => {
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
-    Image: PropTypes.string.isRequired,
+    Images: PropTypes.string.isRequired,
     Name: PropTypes.string.isRequired,
     Model: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
-    Price: PropTypes.number.isRequired,
+    Price: PropTypes.string.isRequired,
   }).isRequired,
 };
 

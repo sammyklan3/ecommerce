@@ -7,8 +7,12 @@ import { FaDollarSign } from "react-icons/fa";
 import { FaWarehouse } from "react-icons/fa";
 import { FaUsers } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
+import { useAuth } from "../../context/AuthContext";
 
 export const SideNav = () => {
+
+    const {logout} = useAuth();
+
     return (
         <div className="navigation">
             {/* Logo */}
@@ -20,7 +24,7 @@ export const SideNav = () => {
             <div className="nav-wrapper">
                 <ul>
                     <li>
-                        <NavLink to="/admin"><FaHome /> Dashboard</NavLink>
+                        <NavLink to="/adminDashboard"><FaHome /> Dashboard</NavLink>
                     </li>
                     <li>
                         <NavLink to="/admin/products"><FaWarehouse /> Products</NavLink>
@@ -46,7 +50,7 @@ export const SideNav = () => {
                         <NavLink to="/admin/settings"><FaCog /> Settings</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/logout"><FaSignOutAlt /> Logout</NavLink>
+                        <a onClick={logout}><FaSignOutAlt /> Logout</a>
                     </li>
                     
                 </ul>

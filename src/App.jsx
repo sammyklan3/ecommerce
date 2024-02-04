@@ -8,6 +8,7 @@ import { Admin } from "./admin/pages/home/Admin";
 import { Signup } from "./pages/signup/Signup";
 import { Account } from './pages/account/Account';
 import { ProductCreation } from './admin/productCreation/ProductCreation';
+import { Products } from "./admin/pages/products/Products";
 
 import './App.css'
 
@@ -18,13 +19,14 @@ function App() {
     
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/admin" element={<Admin />} />
+        <Route path="/adminDashboard" element={<Admin />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/account" element={<Account />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/admin/createproduct" element={< ProductCreation />} />
+        <Route path="/admin/products" element={< Products />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </>

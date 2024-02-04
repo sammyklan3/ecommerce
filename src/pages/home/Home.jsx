@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { Loader } from "../../components/loader/loader";
 import { Banner } from "../../components/banner/Banner";
+import { axiosInstance } from "../../api/axiosInstance";
 
 export const Home = () => {
   const [data, setData] = useState(null);
@@ -11,20 +12,19 @@ export const Home = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const API_URL = "http://localhost:3000/products";
 
     const fetchData = async () => {
       try {
         // Make your API call or fetch data here
-        const response = await fetch(API_URL);
+        const response = await axiosInstance.get("/products");
 
-        const result = await response.json();
 
         // Simulate data fetching for 2 seconds
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise(resolve => setTimeout(resolve, 500));
 
         // After data is fetched, update the state
-        setData(result);
+        console.log(response.data);
+        setData(response.data);
         setLoading(false);
 
       } catch (error) {
@@ -59,14 +59,14 @@ export const Home = () => {
         ) : loading ? (
           // Show loading spinner or loading box while data is being fetched
           <Loader />
-        ) : data && data ? (
+        ) : data && data.length > 0 ? (
           // Render the component
           data.map((product, index) => (
             <ProductCard key={index} product={product} />
           ))
         ) : (
           // Show a message if no data is available
-          <p>No data available</p>
+          <p>No products are available for now.</p>
         )}
       </div>
     </>
