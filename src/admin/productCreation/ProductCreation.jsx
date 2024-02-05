@@ -1,7 +1,7 @@
 // Updated Component
 import { useState } from 'react';
 import "./ProductCreation.css";
-import { Navbar } from "../../components/navbar/Navbar";
+import { SideNav } from '../../components/adminNav/SideNav';
 import { axiosInstance } from '../../api/axiosInstance';
 
 export const ProductCreation = () => {
@@ -37,6 +37,25 @@ export const ProductCreation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Check if any of the required fields are empty
+    if (
+      !formData.name ||
+      !formData.description ||
+      !formData.price ||
+      !formData.stockquantity ||
+      !formData.model ||
+      !formData.category
+    ) {
+      setError("Please fill in all required fields");
+
+      // Set a timer to clear the error after 3 seconds
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+      return;
+
+    }
+
     const formDataToSend = new FormData();
     formDataToSend.append("name", formData.name);
     formDataToSend.append("description", formData.description);
@@ -56,19 +75,25 @@ export const ProductCreation = () => {
         },
       });
 
-      setSuccess(response.data);
+      setSuccess(response.data.message);
       console.log(response.message);
 
     } catch (error) {
       console.log(error)
       setError(error.response.data.error)
+
+      // Set a timer to clear the error after 3 seconds
+      setTimeout(() => {
+        setError(null);
+      }, 3000);
+      return;
     }
   };
 
   return (
     <>
-      <Navbar />
       <div className="product-creation-container">
+        <SideNav />
         <form className='product-creation-form' encType="multipart/form-data">
           <div className="form-row">
             <label>
@@ -147,16 +172,16 @@ export const ProductCreation = () => {
             <label htmlFor="fileInput">Upload Image</label>
           </div>
           <div className="form-row">
-            <button type="submit" onClick={handleSubmit} className="submitBtn">Submit</button>
+            <button type="submit" onClick={handleSubmit} className="submitBtn">Create</button>
           </div>
-        </form>
 
-        {error ? (
-          <span className="error">Error: {error}</span>
-        ) : success ?(
-          <span className="success">{success}</span>
-        ) : null
-      }
+          {error ? (
+            <span className="error">Error: {error}</span>
+          ) : success ? (
+            <span className="success">{success}</span>
+          ) : null
+          }
+        </form>
       </div>
     </>
   );

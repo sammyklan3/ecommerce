@@ -1,55 +1,58 @@
 import "./productcard.css";
-import { Button } from "../button/button";
 import PropTypes from 'prop-types';
 import { BsApple } from "react-icons/bs";
 import { DiAndroid } from "react-icons/di";
 import { SiSamsung, SiHuawei, SiXiaomi, SiNokia, SiOneplus } from "react-icons/si";
-import { CartContext } from "../../context/Cart";
-import { useContext } from "react";
+import { NavLink } from "react-router-dom";
 
 
 
 export const ProductCard = ({ product }) => {
 
-  const { addToCart } = useContext(CartContext);
-  
   const model = product.Model.toLowerCase();
   const isSamsungGalaxy = ["samsung", "galaxy"].some(keyword => model.includes(keyword));
 
   return (
     <div>
       <div className="product-card">
-        <div>
-          <img src={product.Images || "https://via.placeholder.com/400"} alt={product.Name} className="product-image" />
-        </div>
-        < hr />
-        <div className="product-details">
-          <h3 className="product-name">{product.Name}</h3>
-          <small className="product-description">{product.Description.slice(0, 31)}...</small>
-          <p className="product-price">Ksh. {parseFloat(product.Price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
-          <br />
-          {product.Model.toLowerCase().includes("iphone") ? (
-            <p className="product-model"><span className="model-brand"><BsApple /></span> {product.Model}</p>
-          ) : isSamsungGalaxy ? (
-            <p className="product-model"><span className="model-brand"><SiSamsung /></span> {product.Model}</p>
-          ) : product.Model.toLowerCase().includes("xiaomi") ? (
-            <p className="product-model"><span className="model-brand"><SiXiaomi /></span> {product.Model}</p>
-          ) : product.Model.toLowerCase().includes("huawei") ? (
-            <p className="product-model"><span className="model-brand"><SiHuawei /></span> {product.Model}</p>
-          ) : product.Model.toLowerCase().includes("nokia") ?(
-            <p className="product-model"><span className="model-brand"><SiNokia /></span> {product.Model}</p>
-          ): product.Model.toLowerCase().includes("oneplus") ? (
-            <p className="product-model"><span className="model-brand"><SiOneplus /></span> {product.Model}</p>
-          ) : (
-            <p className="product-model"><span className="model-brand"><DiAndroid /></span> {product.Model}</p>
-          )}
+        <NavLink to={`/product/${product.ProductID}`}>
+          <div>
+            <img src={product.Images || "https://via.placeholder.com/400"} alt={product.Name} className="product-image" />
+          </div>
+          < hr />
+          <div className="product-details">
+            {/* Conditional render */}
+            {product.Name.length > 24 ?
+              (
+                <h3 className="product-name">{product.Name.slice(0, 20)}...</h3>
+              ) : (
+                <h3 className="product-name">{product.Name}</h3>
+              )}
+            <p className="product-price">Ksh. {parseFloat(product.Price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            <br />
+            {product.Model.toLowerCase().includes("iphone") ? (
+              <p className="product-model"><span className="model-brand"><BsApple /></span> {product.Model}</p>
+            ) : isSamsungGalaxy ? (
+              <p className="product-model"><span className="model-brand"><SiSamsung /></span> {product.Model}</p>
+            ) : product.Model.toLowerCase().includes("xiaomi") ? (
+              <p className="product-model"><span className="model-brand"><SiXiaomi /></span> {product.Model}</p>
+            ) : product.Model.toLowerCase().includes("huawei") ? (
+              <p className="product-model"><span className="model-brand"><SiHuawei /></span> {product.Model}</p>
+            ) : product.Model.toLowerCase().includes("nokia") ? (
+              <p className="product-model"><span className="model-brand"><SiNokia /></span> {product.Model}</p>
+            ) : product.Model.toLowerCase().includes("oneplus") ? (
+              <p className="product-model"><span className="model-brand"><SiOneplus /></span> {product.Model}</p>
+            ) : (
+              <p className="product-model"><span className="model-brand"><DiAndroid /></span> {product.Model}</p>
+            )}
 
 
-          <br />
-          <Button text="Add to Cart" onClick={() => addToCart(product)}/>
-        </div>
+            <br />
+          </div>
+        </NavLink >
       </div>
     </div>
+
   )
 }
 
@@ -60,6 +63,7 @@ ProductCard.propTypes = {
     Model: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
     Price: PropTypes.string.isRequired,
+    ProductID: PropTypes.string.isRequired,
   }).isRequired,
 };
 

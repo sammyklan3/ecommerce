@@ -9,6 +9,7 @@ import { Signup } from "./pages/signup/Signup";
 import { Account } from './pages/account/Account';
 import { ProductCreation } from './admin/productCreation/ProductCreation';
 import { Products } from "./admin/pages/products/Products";
+import { ProductDetail } from "./pages/product/product";
 
 import './App.css'
 
@@ -19,6 +20,7 @@ function App() {
     
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/product/:ProductID" element={<ProductDetail/>} />
         <Route path="/adminDashboard" element={<Admin />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/cart" element={<Cart />} />

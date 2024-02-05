@@ -1,9 +1,7 @@
 /* Updated CSS */
 .product-creation-container {
   display: flex;
-  flex-direction: column;
   height: 100vh;
-  padding: 10px;
 }
 
 .product-creation-form {
@@ -59,7 +57,7 @@
 }
 
 .submitBtn {
-  background-color: #4CAF50;
+  background-color: black;
   color: white;
   padding: 10px;
   border: none;
@@ -67,6 +65,24 @@
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #45a049;
+.submitBtn:hover {
+  background-color: white;
+}
+
+.error {
+  text-align: center;
+  padding: 10px;
+  border-radius: 14px;
+  align-items: center;
+  background-color: rgb(48, 14, 14);
+  transition: all 0.6s ease-in-out;
+  color: red;
+}
+
+.success {
+  color: green;
+  background-color: #000000;
+  padding: 10px;
+  width: max-content;
+  border-radius: 10px;
 }

@@ -23,7 +23,6 @@ export const Home = () => {
         await new Promise(resolve => setTimeout(resolve, 500));
 
         // After data is fetched, update the state
-        console.log(response.data);
         setData(response.data);
         setLoading(false);
 
