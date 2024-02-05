@@ -7,14 +7,21 @@ import { Navbar } from "../../components/navbar/Navbar";
 import { CartContext } from "../../context/Cart";
 import { Button } from "../../components/button/button";
 
+const SimilarProduct = ({ product }) => {
+    return (
+        <p>{product.Name}</p>
+    )
+}
+
 export const ProductDetail = () => {
 
     const { addToCart } = useContext(CartContext);
 
     const { ProductID } = useParams();
     const [product, setProduct] = useState(null);
-    const [ error, setError ] = useState(null);
- 
+    const [error, setError] = useState(null);
+    const [similarProducts, setSimilarProducts] = useState(null);
+
     const handleAddToCart = () => {
         addToCart(product);
     };
@@ -38,7 +45,25 @@ export const ProductDetail = () => {
 
     }, [ProductID])
 
-    if( error ) {
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axiosInstance.get("products");
+
+                // Simulate data fetching for some time
+                await new Promise(resolve => setTimeout(resolve, 200));
+
+                setSimilarProducts(response.data)
+            } catch (err) {
+                setError(err.message)
+            }
+        }
+
+        fetchData();
+
+    }, [ProductID])
+
+    if (error) {
         return (
             <>
                 <Navbar />
@@ -66,6 +91,7 @@ export const ProductDetail = () => {
                     </div>
                     <div className="product-info">
                         <h1>{product.Name}</h1>
+                        <p>{product.Category}</p>
                         <h2>Ksh. {parseFloat(product.Price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h2>
                         {product.StockQuantity < 5 ? (
                             <p>Hurry up! Only {product.StockQuantity} left</p>
@@ -87,7 +113,13 @@ export const ProductDetail = () => {
                     </h2>
                     <hr />
                     <div className="recommendation-products">
-
+                        {similarProducts ? (
+                            similarProducts.map((product, index) => (
+                                <SimilarProduct key={index} product={product} />
+                            ))
+                        ) : (
+                            <p>This product has no similar</p>
+                        )}
                     </div>
                 </div>
             </div>
