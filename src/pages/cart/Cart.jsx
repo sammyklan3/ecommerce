@@ -22,10 +22,13 @@ export const Cart = () => {
           <div className="cart-container">
             {/* Mapping The cart items */}
             {cartItems.map((item) => (
-              <div className="cart-item" key={item.id}>
+              <div className="cart-item" key={item.Id}>
 
                 <div className="cart-item-content">
-                  <img src={item.Images || "https://via.placeholder.com/400"} alt={item.Name} className="cart-item-img" />
+                  {item.Images && item.Images.length > 0 && (
+                    <img src={item.Images[0]} alt={item.Name} className="cart-item-img" />
+                  )}
+
                   <div className="cart-item-details">
                     <h1 className="cart-item-name">{item.Name}</h1>
                     <p className="cart-item-desc">{item.Description}</p>

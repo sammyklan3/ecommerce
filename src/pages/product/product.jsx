@@ -1,7 +1,4 @@
 import "./product.css";
-import AwesomeSlider from 'react-awesome-slider';
-import withAutoplay from 'react-awesome-slider/dist/autoplay';
-import 'react-awesome-slider/dist/styles.css';
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { axiosInstance } from "../../api/axiosInstance";
@@ -10,8 +7,7 @@ import { Navbar } from "../../components/navbar/Navbar";
 import { CartContext } from "../../context/Cart";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
-
-const AutoplaySlider = withAutoplay(AwesomeSlider);
+import { Carousel } from "../../components/carousel/Carousel";
 
 const SimilarProduct = ({ product }) => {
     return (
@@ -27,19 +23,6 @@ const SimilarProduct = ({ product }) => {
             </div>
         </li>
     )
-}
-
-const Slider = () => {
-    return (
-        <AutoplaySlider
-            play={true}
-            cancelOnInteraction={false} // should stop playing on user interaction
-            interval={6000}
-        >
-            
-        </AutoplaySlider>
-    )
-
 }
 
 export const ProductDetail = () => {
@@ -119,7 +102,8 @@ export const ProductDetail = () => {
                 <div className="product-container">
                     <div className="product-image-container">
                         <div className="image-slider">
-                            <Slider />
+                            {/* Carousel */}
+                            <Carousel images={product.Images}/>
                         </div>
                     </div>
 
