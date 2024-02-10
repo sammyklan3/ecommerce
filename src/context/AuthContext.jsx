@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     const fetchData = async () => {
       try {
 
-        const response = await axiosInstance.get("currentUser", {
+        const response = await axiosInstance.get("/currentUser", {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': ` Bearer ${token}`,

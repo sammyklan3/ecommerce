@@ -1,22 +1,50 @@
 import "./product.css";
+import AwesomeSlider from 'react-awesome-slider';
+import withAutoplay from 'react-awesome-slider/dist/autoplay';
+import 'react-awesome-slider/dist/styles.css';
 import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { axiosInstance } from "../../api/axiosInstance";
 import { Loader } from "../../components/loader/Loader";
 import { Navbar } from "../../components/navbar/Navbar";
 import { CartContext } from "../../context/Cart";
-import { Button } from "../../components/button/button";
+import { NavLink } from "react-router-dom";
+import PropTypes from "prop-types";
+
+const AutoplaySlider = withAutoplay(AwesomeSlider);
 
 const SimilarProduct = ({ product }) => {
     return (
-        <p>{product.Name}</p>
+        <li>
+            <div className="similar-product-container">
+                <NavLink to={`/product/${product.ProductID}`} className="similar-product-link">
+                    <img src={product.Images} alt={product.Name} className="similar-product-image" />
+                    <div className="similar-product-info">
+                        <h3 className="similar-product-name">{product.Name}</h3>
+                        <p className="similar-product-price">Ksh. {parseFloat(product.Price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+                    </div>
+                </NavLink>
+            </div>
+        </li>
     )
+}
+
+const Slider = () => {
+    return (
+        <AutoplaySlider
+            play={true}
+            cancelOnInteraction={false} // should stop playing on user interaction
+            interval={6000}
+        >
+            
+        </AutoplaySlider>
+    )
+
 }
 
 export const ProductDetail = () => {
 
     const { addToCart } = useContext(CartContext);
-
     const { ProductID } = useParams();
     const [product, setProduct] = useState(null);
     const [error, setError] = useState(null);
@@ -34,7 +62,7 @@ export const ProductDetail = () => {
                 // Simulate data fetching for 2 seconds
                 await new Promise(resolve => setTimeout(resolve, 200));
 
-                setProduct(response.data[0])
+                setProduct(response.data)
 
             } catch (err) {
                 setError(err.message)
@@ -48,20 +76,26 @@ export const ProductDetail = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axiosInstance.get("products");
+                if (!product) return; // Check if product is null
+
+                const response = await axiosInstance.get("/products");
 
                 // Simulate data fetching for some time
                 await new Promise(resolve => setTimeout(resolve, 200));
 
-                setSimilarProducts(response.data)
+                const filteredProducts = response.data
+                    .filter(p => p.Category) // Filter out objects where Category is undefined or null
+                    .filter(p => p.Category.toLowerCase() === product.Category.toLowerCase() && p.ProductID !== product.ProductID);
+
+                setSimilarProducts(filteredProducts);
             } catch (err) {
-                setError(err.message)
+                setError(err.message);
             }
-        }
+        };
 
         fetchData();
 
-    }, [ProductID])
+    }, [product]); // Update the dependency to include 'product'
 
     if (error) {
         return (
@@ -84,24 +118,26 @@ export const ProductDetail = () => {
 
                 <div className="product-container">
                     <div className="product-image-container">
-                        <img src={product.Images} alt={product.Name} className="product-image-slider" />
-                        <div className="product-image-selector">
-                            <img src={product.Images} alt={product.Name} className="product-single-image" />
+                        <div className="image-slider">
+                            <Slider />
                         </div>
                     </div>
+
                     <div className="product-info">
                         <h1>{product.Name}</h1>
-                        <p>{product.Category}</p>
                         <h2>Ksh. {parseFloat(product.Price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h2>
                         {product.StockQuantity < 5 ? (
-                            <p>Hurry up! Only {product.StockQuantity} left</p>
+                            <p className="low-quantity">Hurry up! Only {product.StockQuantity} left</p>
                         ) : (
                             <p>{product.StockQuantity} Items left</p>
                         )}
-                        <Button text="Add to cart" onClick={handleAddToCart} />
+
                     </div>
                 </div>
-
+                <div className="action-section">
+                    <button onClick={handleAddToCart} className="addToCartBtn"> Add to Cart</button>
+                    <button className="buyBtn">Buy now</button>
+                </div>
                 <div className="product-description">
                     <h3>Detailed Description</h3>
                     <p>{product.Description}</p>
@@ -109,17 +145,19 @@ export const ProductDetail = () => {
 
                 <div className="recommendation">
                     <h2>
-                        Recommendations
+                        Similar products
                     </h2>
                     <hr />
                     <div className="recommendation-products">
-                        {similarProducts ? (
-                            similarProducts.map((product, index) => (
-                                <SimilarProduct key={index} product={product} />
-                            ))
-                        ) : (
-                            <p>This product has no similar</p>
-                        )}
+                        <ul>
+                            {similarProducts ? (
+                                similarProducts.map((product, index) => (
+                                    <SimilarProduct key={index} product={product} />
+                                ))
+                            ) : (
+                                <p>This product has no similar items</p>
+                            )}
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -128,3 +166,14 @@ export const ProductDetail = () => {
     )
 
 }
+
+SimilarProduct.propTypes = {
+    product: PropTypes.shape({
+        Images: PropTypes.arrayOf(PropTypes.string).isRequired,
+        Name: PropTypes.string.isRequired,
+        Model: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired,
+        Price: PropTypes.number.isRequired,
+        ProductID: PropTypes.string.isRequired,
+    }).isRequired,
+};

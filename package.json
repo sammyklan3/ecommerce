@@ -14,8 +14,11 @@
     "express": "^4.18.2",
     "faker": "^5.5.3",
     "react": "^18.2.0",
+    "react-awesome-slider": "^4.1.0",
+    "react-awesome-slider-fc": "^1.0.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^5.0.1"
+    "react-icons": "^5.0.1",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",

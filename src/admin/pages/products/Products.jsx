@@ -11,13 +11,13 @@ const ProductCard = ({ data, onDelete }) => {
         data.map((product, index) => (
             <li className="adminProduct-card" key={index}>
                 <div className="product-card-name">
-                    <img src={product.Images || "https://via.placeholder.com/400"} alt={product.Name} />
+                    <img src={product.ImageURL || "https://via.placeholder.com/400"} alt={product.Name} />
                     <h3>{product.Name}</h3>
                 </div>
                 <p>{product.Description.slice(0, 20)}...</p>
                 <p>Ksh. {parseFloat(product.Price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
                 <p>{product.StockQuantity}</p>
-                <button className="deleteBtn" onClick={() => onDelete(product.Id)}><FaRegTrashAlt /></button>
+                <button className="deleteBtn" onClick={() => onDelete(product.ProductID)}><FaRegTrashAlt /></button>
             </li>
         ))
     )
@@ -71,7 +71,7 @@ export const Products = () => {
                 await fetchData(); // Refetch data
             } else {
                 // Handle other status codes or errors
-                console.log("Error deleting product");
+                setError("Error deleting product");
             }
 
         } catch (err) {

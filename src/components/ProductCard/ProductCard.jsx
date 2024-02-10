@@ -5,8 +5,6 @@ import { DiAndroid } from "react-icons/di";
 import { SiSamsung, SiHuawei, SiXiaomi, SiNokia, SiOneplus } from "react-icons/si";
 import { NavLink } from "react-router-dom";
 
-
-
 export const ProductCard = ({ product }) => {
 
   const model = product.Model.toLowerCase();
@@ -17,14 +15,13 @@ export const ProductCard = ({ product }) => {
       <div className="product-card">
         <NavLink to={`/product/${product.ProductID}`}>
           <div>
-            <img src={product.Images || "https://via.placeholder.com/400"} alt={product.Name} className="product-image" />
+            <img src={product.ImageURL || "https://via.placeholder.com/400"} alt={product.Name} className="product-image" />
           </div>
-          < hr />
           <div className="product-details">
             {/* Conditional render */}
             {product.Name.length > 24 ?
               (
-                <h3 className="product-name">{product.Name.slice(0, 20)}...</h3>
+                <h3 className="product-name">{product.Name}</h3>
               ) : (
                 <h3 className="product-name">{product.Name}</h3>
               )}
@@ -58,7 +55,7 @@ export const ProductCard = ({ product }) => {
 
 ProductCard.propTypes = {
   product: PropTypes.shape({
-    Images: PropTypes.string.isRequired,
+    ImageURL: PropTypes.string.isRequired,
     Name: PropTypes.string.isRequired,
     Model: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
