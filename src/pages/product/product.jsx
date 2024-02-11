@@ -5,9 +5,11 @@ import { axiosInstance } from "../../api/axiosInstance";
 import { Loader } from "../../components/loader/Loader";
 import { Navbar } from "../../components/navbar/Navbar";
 import { CartContext } from "../../context/Cart";
+import { FaAngleDown } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Carousel } from "../../components/carousel/Carousel";
+import { Rating } from "../../components/rating/Rating";
 
 const SimilarProduct = ({ product }) => {
     return (
@@ -36,7 +38,6 @@ export const ProductDetail = () => {
     const handleAddToCart = () => {
         addToCart(product);
     };
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -45,7 +46,7 @@ export const ProductDetail = () => {
                 // Simulate data fetching for 2 seconds
                 await new Promise(resolve => setTimeout(resolve, 200));
 
-                setProduct(response.data)
+                setProduct(response.data);
 
             } catch (err) {
                 setError(err.message)
@@ -103,28 +104,65 @@ export const ProductDetail = () => {
                     <div className="product-image-container">
                         <div className="image-slider">
                             {/* Carousel */}
-                            <Carousel images={product.Images}/>
+                            <Carousel images={product.Images} />
                         </div>
                     </div>
+                    <div className="content-container">
+                        <div className="product-info">
+                            <h1>{product.Name}</h1>
+                            <h2>Ksh. {parseFloat(product.Price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h2>
+                            {product.StockQuantity < 5 ? (
+                                <p className="low-quantity">Hurry up! Only {product.StockQuantity} left</p>
+                            ) : (
+                                <p>{product.StockQuantity} Items left</p>
+                            )}
 
-                    <div className="product-info">
-                        <h1>{product.Name}</h1>
-                        <h2>Ksh. {parseFloat(product.Price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</h2>
-                        {product.StockQuantity < 5 ? (
-                            <p className="low-quantity">Hurry up! Only {product.StockQuantity} left</p>
-                        ) : (
-                            <p>{product.StockQuantity} Items left</p>
-                        )}
-
+                            {product.Reviews.length > 0 && product.Reviews ? (
+                                <p><Rating ratings={product.Reviews.map(review => parseFloat(review.Rating))} /></p>
+                            ) : (
+                                <p>No reviews</p>
+                            )}
+                        </div>
+                        <div className="action-section">
+                            <button onClick={handleAddToCart} className="addToCartBtn"> Add to Cart</button>
+                            <button className="buyBtn">Buy now</button>
+                        </div>
                     </div>
                 </div>
-                <div className="action-section">
-                    <button onClick={handleAddToCart} className="addToCartBtn"> Add to Cart</button>
-                    <button className="buyBtn">Buy now</button>
-                </div>
+
                 <div className="product-description">
-                    <h3>Detailed Description</h3>
+                    <h3>About this Item</h3>
                     <p>{product.Description}</p>
+                </div>
+
+                <div className="reviews-section">
+                    <div className="reviews-section-title">
+                        <p>{product.Reviews.length} Reviews</p>
+                        <p><FaAngleDown /></p>
+                    </div>
+
+                    <div className="reviews-section-content">
+                        <ul>
+
+                            {product.Reviews.map((review, index) => (
+                                <li key={index}>
+                                    <div className="review-container" >
+                                        <div className="review-image-container">
+                                            {/* <img src={review.User.Image || "https://via.placeholder.com/400"} alt={review.User.Name} className="review-image" /> */}
+                                        </div>
+                                        <div className="review-info">
+                                            {/* <h3 className="review-name">{review.User.Name}</h3> */}
+                                            <p className="review-rating">
+                                                {review.Rating}
+                                            </p>
+                                            <p className="review-text">{review.Comment}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
+
+                        </ul>
+                    </div>
                 </div>
 
                 <div className="recommendation">
@@ -134,13 +172,14 @@ export const ProductDetail = () => {
                     <hr />
                     <div className="recommendation-products">
                         <ul>
-                            {similarProducts ? (
+                            {similarProducts && similarProducts.length > 0 ? (
                                 similarProducts.map((product, index) => (
                                     <SimilarProduct key={index} product={product} />
                                 ))
                             ) : (
-                                <p>This product has no similar items</p>
+                                <p>Similar Items cannot be found</p>
                             )}
+
                         </ul>
                     </div>
                 </div>
