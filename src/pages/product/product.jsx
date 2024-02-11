@@ -6,6 +6,8 @@ import { Loader } from "../../components/loader/Loader";
 import { Navbar } from "../../components/navbar/Navbar";
 import { CartContext } from "../../context/Cart";
 import { FaAngleDown } from "react-icons/fa";
+import { FaAngleUp } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Carousel } from "../../components/carousel/Carousel";
@@ -34,10 +36,16 @@ export const ProductDetail = () => {
     const [product, setProduct] = useState(null);
     const [error, setError] = useState(null);
     const [similarProducts, setSimilarProducts] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
 
     const handleAddToCart = () => {
         addToCart(product);
     };
+
+    const toggleOpen = () => {
+        setIsOpen(!isOpen);
+    };
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -136,33 +144,43 @@ export const ProductDetail = () => {
                 </div>
 
                 <div className="reviews-section">
-                    <div className="reviews-section-title">
+                    <div className="reviews-section-title" onClick={toggleOpen}>
                         <p>{product.Reviews.length} Reviews</p>
-                        <p><FaAngleDown /></p>
+                        {isOpen ? (
+                            <p><FaAngleUp /></p>
+                        ) : (
+                            <p><FaAngleDown /></p>
+                        )}
                     </div>
 
-                    <div className="reviews-section-content">
-                        <ul>
-
-                            {product.Reviews.map((review, index) => (
-                                <li key={index}>
-                                    <div className="review-container" >
-                                        <div className="review-image-container">
-                                            {/* <img src={review.User.Image || "https://via.placeholder.com/400"} alt={review.User.Name} className="review-image" /> */}
+                    {isOpen && (
+                        <div className="reviews-section-content">
+                            <ul>
+                                {product.Reviews.map((review, index) => (
+                                    <li key={index}>
+                                        <div className="review-container">
+                                            <div className="review-image-container">
+                                                <img src={review.profile_image || "https://via.placeholder.com/400"} alt={review.username} className="review-image" />
+                                                <h3 className="review-name">{review.username}</h3>
+                                                <p className="review-rating">
+                                                    <FaStar />
+                                                    <p>{review.Rating}</p>
+                                                </p>
+                                            </div>
+                                            <div className="review-info">
+                                                <p className="review-text">{review.Comment}</p>
+                                            </div>
                                         </div>
-                                        <div className="review-info">
-                                            {/* <h3 className="review-name">{review.User.Name}</h3> */}
-                                            <p className="review-rating">
-                                                {review.Rating}
-                                            </p>
-                                            <p className="review-text">{review.Comment}</p>
-                                        </div>
-                                    </div>
-                                </li>
-                            ))}
+                                    </li>
+                                ))}
+                            </ul>
 
-                        </ul>
-                    </div>
+                            <form className="review-form">
+                                <input type="text" placeholder="Enter your review" />
+                                <button className="review-form-btn">Submit</button>
+                            </form>
+                        </div>
+                    )}
                 </div>
 
                 <div className="recommendation">
