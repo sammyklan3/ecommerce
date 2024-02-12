@@ -1,7 +1,7 @@
 import "./orderlist.css";
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
-export const OrderList = ({ order ,index }) => {
+export const Orderlist = ({ order ,index }) => {
   return (
     <div className="order-list-item">
       <div className="order-list-item-details">

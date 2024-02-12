@@ -4,11 +4,11 @@ import { useEffect, useState } from "react";
 import { FaTag } from "react-icons/fa";
 import { FaShoppingBag } from "react-icons/fa";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
-import { Loader } from "../../../components/loader/loader";
+import { Loader } from "../../../components/loader/Loader";
 import { useAuth } from "../../../context/AuthContext";
 import { FaBell } from "react-icons/fa";
 import { axiosInstance } from "../../../api/axiosInstance";
-import { OrderList } from "../../../components/orderList/orderList";
+import { Orderlist } from "../../../components/orderList/orderList";
 
 
 
@@ -166,7 +166,7 @@ export const Admin = () => {
                                                     <p>Error: {error}</p>
                                                 ) : orderData && orderData.length > 0 ? (
                                                     orderData.map((order, index) => (
-                                                        <OrderList key={index} order={order} />
+                                                        <Orderlist key={index} order={order} />
                                                     ))
                                                 ) : (
                                                     <p>No available orders</p>
