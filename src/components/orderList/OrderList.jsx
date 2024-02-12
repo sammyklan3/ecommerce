@@ -14,6 +14,9 @@ export const Orderlist = ({ order ,index }) => {
   )
 }
 
-OrderList.propTypes = {
-
+Orderlist.propTypes = {
+  index: PropTypes.number,
+  order: PropTypes.shape({
+    date: PropTypes.string.isRequired,
+  })
 }

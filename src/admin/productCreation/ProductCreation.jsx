@@ -1,6 +1,6 @@
 // Updated Component
 import { useState } from 'react';
-import "./ProductCreation.css";
+import "./productCreation.css";
 import { SideNav } from '../../components/adminNav/SideNav';
 import { axiosInstance } from '../../api/axiosInstance';
 
