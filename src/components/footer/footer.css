@@ -1,0 +1,27 @@
+.footer-container {
+    background-color: rgba(31, 30, 30, 0.842);
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+    width: 100%;
+    padding: 0 10px;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    backdrop-filter: blur(10px);
+}
+
+.footer-container ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.footer-container a {
+    text-decoration: none;
+    font-size: 30px;
+    color: gray;
+}
+
+.footer-container a:active {
+    color: white;
+}

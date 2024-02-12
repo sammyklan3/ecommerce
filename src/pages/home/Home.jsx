@@ -68,6 +68,7 @@ export const Home = () => {
           <p>No products are available for now.</p>
         )}
       </div>
+
     </>
   );
 

@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Carousel } from "../../components/carousel/Carousel";
 import { Rating } from "../../components/rating/Rating";
+import { Footer } from "../../components/footer/Footer";
 
 const SimilarProduct = ({ product }) => {
     return (
@@ -145,7 +146,7 @@ export const ProductDetail = () => {
 
                 <div className="reviews-section">
                     <div className="reviews-section-title" onClick={toggleOpen}>
-                        <p>{product.Reviews.length} Reviews</p>
+                        <p>Reviews {product.Reviews.length}</p>
                         {isOpen ? (
                             <p><FaAngleUp /></p>
                         ) : (
@@ -174,11 +175,6 @@ export const ProductDetail = () => {
                                     </li>
                                 ))}
                             </ul>
-
-                            <form className="review-form">
-                                <input type="text" placeholder="Enter your review" />
-                                <button className="review-form-btn">Submit</button>
-                            </form>
                         </div>
                     )}
                 </div>
@@ -203,6 +199,7 @@ export const ProductDetail = () => {
                 </div>
             </div>
 
+            {/* <Footer /> */}
         </>
     )
 

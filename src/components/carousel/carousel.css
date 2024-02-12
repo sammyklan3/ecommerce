@@ -43,7 +43,7 @@
     height: 370px;
     display: block;
     transition: transform 0.5s ease-in-out;
-    object-fit: contain; /* Ensure the image covers the entire container */
+    object-fit: cover; /* Ensure the image covers the entire container */
   }
   
   .carousel__img:hover {
@@ -56,7 +56,7 @@
       height: 300px;
       display: block;
       transition: transform 0.5s ease-in-out;
-      object-fit: contain; /* Ensure the image covers the entire container */
+      object-fit: cover; /* Ensure the image covers the entire container */
     }
   }
 
