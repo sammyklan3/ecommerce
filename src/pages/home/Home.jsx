@@ -2,7 +2,7 @@ import "./home.css";
 import { Navbar } from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
-import { Loader } from "../../components/loader/loader";
+import { Loader } from "../../components/loader/Loader";
 import { Banner } from "../../components/banner/Banner";
 import { axiosInstance } from "../../api/axiosInstance";
 
