@@ -8,7 +8,7 @@ import { Loader } from "../../../components/loader/Loader";
 import { useAuth } from "../../../context/AuthContext";
 import { FaBell } from "react-icons/fa";
 import { axiosInstance } from "../../../api/axiosInstance";
-import { Orderlist } from "../../../components/orderList/orderList";
+import { Orderlist } from "../../../components/orderList/Orderlist";
 
 
 
