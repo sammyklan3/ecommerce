@@ -2,7 +2,7 @@ import "./navbar.css";
 import { NavLink } from "react-router-dom";
 import { FiShoppingCart, FiFilter } from "react-icons/fi";
 import { FaUser, } from "react-icons/fa";
-import { Button } from "../button/button";
+import { Button } from "../button/Button";
 import { BsApple } from "react-icons/bs";
 import { SiSamsung, SiHuawei, SiXiaomi, SiNokia, SiOneplus } from "react-icons/si";
 import { CartContext } from "../../context/Cart";
