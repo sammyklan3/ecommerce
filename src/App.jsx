@@ -6,7 +6,7 @@ import { NoPage } from './pages/nopage/NoPage';
 import { Login } from './pages/login/Login';
 import { Admin } from "./admin/pages/home/Admin";
 import { Signup } from "./pages/signup/Signup";
-import { Account } from './pages/account/Account';
+import { Account } from "./pages/Account/Account";
 import { ProductCreation } from './admin/productCreation/ProductCreation';
 import { Products } from "./admin/pages/products/Products";
 import { ProductDetail } from "./pages/product/product";
