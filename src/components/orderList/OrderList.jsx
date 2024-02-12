@@ -1,7 +1,7 @@
 import "./orderlist.css";
 import PropTypes from 'prop-types';
 
-export const Orderlist = ({ order ,index }) => {
+export const OrderList = ({ order }) => {
   return (
     <div className="order-list-item">
       <div className="order-list-item-details">
@@ -14,9 +14,8 @@ export const Orderlist = ({ order ,index }) => {
   )
 }
 
-Orderlist.propTypes = {
-  index: PropTypes.number,
+OrderList.propTypes = {
   order: PropTypes.shape({
     date: PropTypes.string.isRequired,
-  })
+  }).isRequired,
 }

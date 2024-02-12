@@ -8,7 +8,7 @@ import { Loader } from "../../../components/loader/Loader";
 import { useAuth } from "../../../context/AuthContext";
 import { FaBell } from "react-icons/fa";
 import { axiosInstance } from "../../../api/axiosInstance";
-import { Orderlist } from "../../../components/orderList/Orderlist";
+import { OrderList } from "../../../components/orderList/OrderList";
 
 
 
@@ -166,7 +166,7 @@ export const Admin = () => {
                                                     <p>Error: {error}</p>
                                                 ) : orderData && orderData.length > 0 ? (
                                                     orderData.map((order, index) => (
-                                                        <Orderlist key={index} order={order} />
+                                                        <OrderList key={index} order={order} />
                                                     ))
                                                 ) : (
                                                     <p>No available orders</p>
