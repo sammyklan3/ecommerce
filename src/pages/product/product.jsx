@@ -47,6 +47,13 @@ export const ProductDetail = () => {
         setIsOpen(!isOpen);
     };
 
+    // Function to check if the image URL is valid
+    function isValidImageUrl(url) {
+        const image = new Image();
+        image.src = url;
+        return image.complete && image.naturalWidth !== 0;
+    }
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -161,7 +168,11 @@ export const ProductDetail = () => {
                                     <li key={index}>
                                         <div className="review-container">
                                             <div className="review-image-container">
-                                                <img src={review.profile_image || "https://via.placeholder.com/400"} alt={review.username} className="review-image" />
+                                                <img
+                                                    src={isValidImageUrl(review.profile_image) ? review.profile_image : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"}
+                                                    alt={review.username}
+                                                    className="review-image"
+                                                />
                                                 <h3 className="review-name">{review.username}</h3>
                                                 <p className="review-rating">
                                                     <FaStar />
