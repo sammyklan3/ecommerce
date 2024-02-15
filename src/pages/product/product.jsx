@@ -12,7 +12,6 @@ import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Carousel } from "../../components/carousel/Carousel";
 import { Rating } from "../../components/rating/Rating";
-import { Footer } from "../../components/footer/Footer";
 
 const SimilarProduct = ({ product }) => {
     return (
