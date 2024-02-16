@@ -1,15 +1,44 @@
-.banner {
+/* banner.css */
+
+.banner-container {
   margin: 20px auto;
-  width: 95%;
-  border-radius: 10px;
-  height: 400px;
-  background-color: gray;
+  position: relative; /* Add position relative to make z-index work */
 }
 
-@media only screen and (min-width: 200px) and (max-width:760px){
-  .banner {
-    width: 100%;
+.slick-prev,
+.slick-next {
+  position: absolute; /* Set position to absolute */
+  top: 50%; /* Position the arrows vertically centered */
+  transform: translateY(-50%);
+  z-index: 1; /* Ensure arrows are on top of the images */
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+}
+
+.slick-prev {
+  left: 20px; /* Position the left arrow 20px from the left */
+}
+
+.slick-next {
+  right: 20px; /* Position the right arrow 20px from the right */
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+}
+
+.banner img {
+  border-radius: 10px;
+  object-fit: cover;
+  width: max-content;
+  max-height: max-content;
+}
+
+@media only screen and (min-width: 200px) and (max-width: 760px) {
+  .banner img {
     border-radius: 0;
-    height: 270px;
+    max-height: none;
   }
 }
