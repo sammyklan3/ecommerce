@@ -66,7 +66,7 @@ export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error, sig
         {signupLink ? (
           <p className="link">Don&apos;t have an account? <NavLink to={signupLink}>Sign Up</NavLink></p>
         ) : loginLink ? (
-          <p className="link">Already have an account? <NavLink to={signupLink}>Login</NavLink></p>
+          <p className="link">Already have an account? <NavLink to={loginLink}>Login</NavLink></p>
         ): (
           null
         )}
