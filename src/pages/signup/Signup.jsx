@@ -1,7 +1,9 @@
+import "./signup.css";
 import { Form } from "../../components/form/Form";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { useState } from "react";
+import { FaArrowLeft } from "react-icons/fa";
 import { axiosInstance } from "../../api/axiosInstance";
 
 export const Signup = () => {
@@ -35,6 +37,11 @@ export const Signup = () => {
       type: "checkbox"
     }
   ];
+
+  // Function to handle back navigation
+  const handleBack = () => {
+    navigate(-1);
+  };
 
   const onSubmit = async (formData) => {
     try {
@@ -104,8 +111,10 @@ export const Signup = () => {
     confirmPassword: ""
   };
   return (
-    <div>
-      <Form fields={fields} onSubmit={onSubmit} initialState={initialState} title="Create an account" btnTxt="Create" error={error} />
+    <div className="signup-container">
+      {/* Back button */}
+      <p className="arrow-back" onClick={handleBack}><FaArrowLeft /><p>Back</p></p>
+      <Form fields={fields} onSubmit={onSubmit} initialState={initialState} title="Create an account" btnTxt="Create" error={error} loginLink="/login" />
     </div>
   )
 }

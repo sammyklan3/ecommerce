@@ -1,8 +1,10 @@
+import "./login.css";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { axiosInstance } from "../../api/axiosInstance";
 import { Form } from "../../components/form/Form";
+import { FaArrowLeft } from "react-icons/fa";
 
 export const Login = () => {
   const { login } = useAuth();
@@ -23,6 +25,11 @@ export const Login = () => {
       placeholder: "Password",
     },
   ];
+
+// Function to handle back navigation
+const handleBack = () => {
+    navigate(-1);
+};
 
   const onSubmit = async (formData) => {
     try {
@@ -52,7 +59,9 @@ export const Login = () => {
 
   return (
     <>
-      <div>
+      <div className="login-container">
+        {/* Back button */}
+        <p className="arrow-back" onClick={handleBack}><FaArrowLeft /><p>Back</p></p>
         <Form
           fields={fields}
           onSubmit={onSubmit}

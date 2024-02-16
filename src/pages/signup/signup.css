@@ -1,0 +1,20 @@
+.signup-container {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.arrow-back {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: rgb(43, 42, 42);
+    width: max-content;
+    padding: 6px 10px;
+    border-bottom-right-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.5s ease-in-out;
+}
+
+.arrow-back:hover {
+    background-color: rgb(78, 76, 76);
+}

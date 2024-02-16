@@ -3,7 +3,7 @@ import { useState } from "react";
 import PropTypes from 'prop-types';
 import { NavLink } from "react-router-dom";
 
-export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error, signupLink }) => {
+export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error, signupLink, loginLink }) => {
   const [formState, setFormState] = useState(initialState);
 
   const handleChange = (e, fieldName) => {
@@ -63,8 +63,12 @@ export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error, sig
         )}
 
         {/* Conditionally render the sign-up link */}
-        {signupLink && (
+        {signupLink ? (
           <p className="link">Don&apos;t have an account? <NavLink to={signupLink}>Sign Up</NavLink></p>
+        ) : loginLink ? (
+          <p className="link">Already have an account? <NavLink to={signupLink}>Login</NavLink></p>
+        ): (
+          null
         )}
       </form>
     </div>
@@ -86,6 +90,7 @@ Form.propTypes = {
   btnTxt: PropTypes.string,
   error: PropTypes.string,
   signupLink: PropTypes.string, // URL for the sign-up page
+  loginLink: PropTypes.string,
   fields: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
