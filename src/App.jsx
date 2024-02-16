@@ -5,7 +5,7 @@ import { Cart } from "./pages/cart/Cart";
 import { NoPage } from './pages/nopage/NoPage';
 import { Login } from './pages/login/Login';
 import { Admin } from "./admin/pages/home/Admin";
-import { Signup } from "./pages/signup/Signup";
+import { Signup } from './pages/signup/Signup';
 import { Account } from "./pages/Account/Account";
 import { ProductCreation } from './admin/productCreation/ProductCreation';
 import { Products } from "./admin/pages/products/Products";
