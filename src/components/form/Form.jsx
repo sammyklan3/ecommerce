@@ -1,8 +1,9 @@
 import "./form.css";
 import { useState } from "react";
 import PropTypes from 'prop-types';
+import { NavLink } from "react-router-dom";
 
-export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error }) => {
+export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error, signupLink }) => {
   const [formState, setFormState] = useState(initialState);
 
   const handleChange = (e, fieldName) => {
@@ -17,7 +18,6 @@ export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error }) =
     onSubmit(formState);
   };
 
-
   return (
     <div className="form-container">
       <form className="dark-form">
@@ -25,9 +25,6 @@ export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error }) =
         <br />
         <hr />
         <br />
-
-        {/* Display error message if present */}
-
 
         {fields.map((field) => (
           <div key={field.name}>
@@ -59,14 +56,17 @@ export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error }) =
           {btnTxt}
         </button>
         <br />
-        {error ? (
+        {error && (
           <div className="error-container">
             <p className="error-txt">{error}</p>
           </div>
-        ) : null}
+        )}
+
+        {/* Conditionally render the sign-up link */}
+        {signupLink && (
+          <p className="link">Don&apos;t have an account? <NavLink to={signupLink}>Sign Up</NavLink></p>
+        )}
       </form>
-
-
     </div>
   );
 };
@@ -75,7 +75,8 @@ Form.defaultProps = {
   initialState: {},
   title: "Default Title",
   btnTxt: "Submit",
-  error: null, // Default to no error
+  error: null,
+  signupLink: null, // Default to no sign-up link
 };
 
 Form.propTypes = {
@@ -83,13 +84,13 @@ Form.propTypes = {
   initialState: PropTypes.object,
   title: PropTypes.string,
   btnTxt: PropTypes.string,
-  error: PropTypes.string, // Error message to be displayed
-  message: PropTypes.string, // Message to be displayed
+  error: PropTypes.string,
+  signupLink: PropTypes.string, // URL for the sign-up page
   fields: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       label: PropTypes.string.isRequired,
-      type: PropTypes.string, // Assuming type is a string
+      type: PropTypes.string,
       placeholder: PropTypes.string,
     })
   ).isRequired,

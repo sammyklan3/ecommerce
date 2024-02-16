@@ -6,6 +6,16 @@
     background-color: black;
 }
 
+.link {
+    color: rgb(160, 155, 155);
+    margin: 0 auto;
+}
+
+.link a {
+    color: white;
+    text-decoration: none;
+}
+
 .dark-form {
     border: 2px solid gray;
     max-width: 400px;

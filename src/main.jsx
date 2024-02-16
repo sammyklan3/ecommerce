@@ -1,3 +1,4 @@
+import './index.css';
 import React from 'react';
 import * as ReactDOM from "react-dom/client";
 import {
@@ -15,7 +16,6 @@ import { Account } from "./pages/Account/Account";
 import { ProductCreation } from './admin/productCreation/ProductCreation';
 import { Products } from "./admin/pages/products/Products";
 import { ProductDetail } from "./pages/product/product";
-import './index.css';
 import { CartProvider } from './context/Cart.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 

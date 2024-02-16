@@ -1,8 +1,8 @@
-import { Form } from "../../components/form/Form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { axiosInstance } from "../../api/axiosInstance";
+import { Form } from "../../components/form/Form";
 
 export const Login = () => {
   const { login } = useAuth();
@@ -26,53 +26,24 @@ export const Login = () => {
 
   const onSubmit = async (formData) => {
     try {
-      // Sending request to the server
       const response = await axiosInstance.post("/login", formData, {
         headers: {
           "Content-Type": "application/json",
         },
       });
 
-      // If response status is not 200
       if (response.status !== 200) {
         setError("Username or password incorrect");
-
-        // Clear the password and username field for security reasons
-        formData.password = "";
-        formData.username = "";
-
-        // Set a timer to clear the error after 3 seconds
-        setTimeout(() => {
-          setError(null);
-        }, 8000);
-
-        return;
+      } else {
+        const data = response.data;
+        login(data.token);
+        navigate("/");
       }
-
-      // If response status is 200
-      const data = response.data;
-      // Storing the token in localStorage
-      login(data.token);
-      // Redirect upon successful login
-      navigate(-1);
-
-      // Catching the error
     } catch (error) {
       console.error(error);
       setError('Authentication failed. Please check your credentials.');
-      // Clear the password and username field for security reasons
-      formData.password = "";
-      formData.username = "";
-
-      // Set a timer to clear the error after 3 seconds
-      setTimeout(() => {
-        setError(null);
-      }, 8000);
-
-      return;
     }
   };
-
 
   const initialState = {
     username: "",
@@ -82,8 +53,15 @@ export const Login = () => {
   return (
     <>
       <div>
-        <Form fields={fields} onSubmit={onSubmit} initialState={initialState} title="Login" btnTxt="Sign In" error={error} />
-        
+        <Form
+          fields={fields}
+          onSubmit={onSubmit}
+          initialState={initialState}
+          title="Login"
+          btnTxt="Sign In"
+          error={error}
+          signupLink="/signup" // Pass the signup link to the Form component
+        />
       </div>
     </>
   );
