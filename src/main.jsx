@@ -18,6 +18,7 @@ import { Products } from "./admin/pages/products/Products";
 import { ProductDetail } from "./pages/product/product";
 import { CartProvider } from './context/Cart.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
+import { Analytics } from '@vercel/analytics/react';
 
 const router = createBrowserRouter([
   {
@@ -70,6 +71,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
       <AuthProvider>
         <CartProvider>
+          <Analytics />
           <RouterProvider router={router} />
         </CartProvider>
       </AuthProvider>
