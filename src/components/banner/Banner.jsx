@@ -18,8 +18,8 @@ export const Banner = () => {
         // Simulate data fetching for 2 seconds
         await new Promise(resolve => setTimeout(resolve, 500));
 
-        console.log(response.data);
-        setData(response.data);
+        console.log(response.data.banners);
+        setData(response.data.banners);
       } catch (err) {
         console.error(err);
         setError(err.message);
