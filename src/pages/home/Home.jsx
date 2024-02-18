@@ -17,10 +17,7 @@ export const Home = () => {
       try {
         // Make your API call or fetch data here
         const response = await axiosInstance.get("/products");
-
-        // Simulate data fetching for 2 seconds
-        await new Promise(resolve => setTimeout(resolve, 500));
-
+        
         // After data is fetched, update the state
         setData(response.data);
 

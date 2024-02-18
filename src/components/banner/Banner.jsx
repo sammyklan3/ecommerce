@@ -2,7 +2,6 @@ import "./banner.css";
 import { useState, useEffect } from "react";
 import { axiosInstance } from "../../api/axiosInstance";
 import Slider from "react-slick";
-import { Loader } from "../loader/Loader";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -14,14 +13,10 @@ export const Banner = () => {
     const fetchData = async () => {
       try {
         const response = await axiosInstance.get("/banners");
-
-        // Simulate data fetching for 2 seconds
-        await new Promise(resolve => setTimeout(resolve, 500));
         
         setData(response.data.banners);
       } catch (err) {
-        console.error(err);
-        setError(err.message);
+        setError(err.response.data.error);
       }
     };
 
@@ -44,12 +39,17 @@ export const Banner = () => {
             ))}
           </Slider>
         </div>
+        ) : error ? (
+          <div className="banner-error">
+            {error && <div>Error: {error}</div>}
+          </div>
+        
       ) : (
         <div className="banner-loading">
           <div className="spinner-loading"></div>
         </div>
       )}
-      {error && <div>Error: {error}</div>}
+      
     </>
   );  
 };

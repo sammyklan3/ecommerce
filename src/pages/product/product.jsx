@@ -58,9 +58,6 @@ export const ProductDetail = () => {
             try {
                 const response = await axiosInstance.get(`/product/${ProductID}`);
 
-                // Simulate data fetching for 2 seconds
-                await new Promise(resolve => setTimeout(resolve, 200));
-
                 setProduct(response.data);
 
             } catch (err) {

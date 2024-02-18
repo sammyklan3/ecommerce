@@ -47,8 +47,7 @@ const handleBack = () => {
         navigate("/");
       }
     } catch (error) {
-      console.error(error);
-      setError('Authentication failed. Please check your credentials.');
+      setError(error.response.data.error);
     }
   };
 

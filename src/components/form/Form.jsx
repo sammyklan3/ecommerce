@@ -57,9 +57,12 @@ export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error, sig
         </button>
         <br />
         {error && (
-          <div className="error-container">
-            <p className="error-txt">{error}</p>
-          </div>
+          <>
+            <div className="error-container">
+              <p className="error-txt">{error}</p>
+            </div>
+            <br />
+          </>
         )}
 
         {/* Conditionally render the sign-up link */}
@@ -67,7 +70,7 @@ export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error, sig
           <p className="link">Don&apos;t have an account? <NavLink to={signupLink}>Sign Up</NavLink></p>
         ) : loginLink ? (
           <p className="link">Already have an account? <NavLink to={loginLink}>Login</NavLink></p>
-        ): (
+        ) : (
           null
         )}
       </form>
