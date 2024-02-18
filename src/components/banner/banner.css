@@ -2,26 +2,32 @@
 
 .banner-container {
   margin: 20px auto;
-  position: relative; /* Add position relative to make z-index work */
+  position: relative;
+  /* Add position relative to make z-index work */
 }
 
 .slick-prev,
 .slick-next {
-  position: absolute; /* Set position to absolute */
-  top: 50%; /* Position the arrows vertically centered */
+  position: absolute;
+  /* Set position to absolute */
+  top: 50%;
+  /* Position the arrows vertically centered */
   transform: translateY(-50%);
-  z-index: 1; /* Ensure arrows are on top of the images */
+  z-index: 1;
+  /* Ensure arrows are on top of the images */
   font-size: 24px;
   color: white;
   cursor: pointer;
 }
 
 .slick-prev {
-  left: 20px; /* Position the left arrow 20px from the left */
+  left: 20px;
+  /* Position the left arrow 20px from the left */
 }
 
 .slick-next {
-  right: 20px; /* Position the right arrow 20px from the right */
+  right: 20px;
+  /* Position the right arrow 20px from the right */
 }
 
 .slider-container {
@@ -69,7 +75,7 @@
   background-color: rgb(54, 53, 53);
 }
 
-.spinner-loading{
+.spinner-loading {
   position: absolute;
   top: 40%;
   left: 50%;
@@ -90,6 +96,7 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
@@ -108,5 +115,16 @@
 
   .banner img {
     height: 230px;
+  }
+
+  .banner-loading {
+    height: 200px;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .spinner-loading {
+    top: 23%;
+    left: 45%;
   }
 }
