@@ -5,13 +5,8 @@
   box-shadow: 0 0 6px rgb(109, 109, 112); /* Shadow properties */
   width: 250px;
   border-radius: 10px;
-  height: 400px;
+  height: max-content;
   transition: all 0.5s ease-in-out;
-}
-
-.product-image{
-  height: 150px;
-  object-fit: cover;
 }
 
 .product-card a{
@@ -33,6 +28,8 @@ hr {
 }
 
 .product-image {
+  height: 150px;
+  object-fit: cover;
   max-width: 100%; /* Ensure the image doesn't exceed the width of the parent div */
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
@@ -52,7 +49,7 @@ hr {
   .product-card {
     width: fit-content;
     margin: auto;
-    height: 300px;
+    height: max-content;
   }
 
   .model-brand {
@@ -61,7 +58,7 @@ hr {
 
   .product-image{
     width: 100%;
-    height: 185px;
+    height: 150px;
     object-fit: cover;
   }
 }

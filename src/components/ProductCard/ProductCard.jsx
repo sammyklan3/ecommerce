@@ -59,7 +59,7 @@ ProductCard.propTypes = {
     Name: PropTypes.string.isRequired,
     Model: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
-    Price: PropTypes.string.isRequired,
+    Price: PropTypes.number.isRequired,
     ProductID: PropTypes.string.isRequired,
   }).isRequired,
 };
