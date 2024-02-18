@@ -17,8 +17,7 @@ export const Banner = () => {
 
         // Simulate data fetching for 2 seconds
         await new Promise(resolve => setTimeout(resolve, 500));
-
-        console.log(response.data.banners);
+        
         setData(response.data.banners);
       } catch (err) {
         console.error(err);
@@ -46,8 +45,8 @@ export const Banner = () => {
           </Slider>
         </div>
       ) : (
-        <div className="banner">
-          <Loader />
+        <div className="banner-loading">
+          <div className="spinner-loading"></div>
         </div>
       )}
       {error && <div>Error: {error}</div>}
