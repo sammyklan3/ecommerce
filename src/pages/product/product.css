@@ -203,8 +203,12 @@
 
     .similar-product-container {
         width: min-content;
-        height: 250px;
     }
+
+    .similar-product-image {
+        height: 100px;
+        width: 130px;
+    } 
 
     .content-container {
         display: flex;
