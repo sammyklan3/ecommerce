@@ -31,11 +31,11 @@ export const Banner = () => {
 
   return (
     <>
-      {data.length === 1 ? (
+      {data && data.length === 1 ? (
         <div className="banner">
           <img src={data[0].ImageName} alt={`Banner 0`} />
         </div>
-      ) : data.length > 1 ? (
+      ) : data && data.length > 1 ? (
         <Slider autoplay autoplaySpeed={3000}>
           {data.map((banner, index) => (
             <div key={index} className="banner">
@@ -50,5 +50,5 @@ export const Banner = () => {
       )}
       {error && <div>Error: {error}</div>}
     </>
-  );
+  );  
 };
