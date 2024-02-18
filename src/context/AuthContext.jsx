@@ -1,5 +1,3 @@
-// src/AuthContext.js
-
 import { createContext, useContext, useState, useEffect } from 'react';
 import { axiosInstance } from '../api/axiosInstance';
 
@@ -11,27 +9,28 @@ export const AuthProvider = ({ children }) => {
   const [role, setRole] = useState(null);
 
   useEffect(() => {
-
+    // Only run once when the component mounts
     const fetchData = async () => {
       try {
-
         const response = await axiosInstance.get("/currentUser", {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': ` Bearer ${token}`,
+            'Authorization': `Bearer ${token}`,
           },
         });
 
         setRole(response.data.role);
-
         setCurrentUsername(response.data.user);
       } catch (error) {
         console.log(error);
       }
     };
 
-    fetchData();
-  }, [token]);
+    // Check if token is available before making the request
+    if (token) {
+      fetchData();
+    }
+  }, []); // Empty dependency array ensures this effect runs only once
 
   const login = (newToken) => {
     localStorage.setItem('token', newToken);
