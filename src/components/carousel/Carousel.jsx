@@ -1,5 +1,6 @@
 import "./carousel.css";
 import { useState, useEffect } from 'react';
+import PropTypes from "prop-types";
 
 export const Carousel = ({ images, interval = 3000 }) => {
 
@@ -57,4 +58,9 @@ export const Carousel = ({ images, interval = 3000 }) => {
       </button>
     </div>
   );
+};
+
+Carousel.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
+  interval: PropTypes.number.isRequired,
 };
