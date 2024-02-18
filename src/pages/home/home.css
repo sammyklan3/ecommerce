@@ -11,9 +11,10 @@
     /* IE and Edge */
     scrollbar-width: none;
     /* Firefox */
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
     overflow: scroll;
-    gap: 20px;
     padding: 20px;
   }
 

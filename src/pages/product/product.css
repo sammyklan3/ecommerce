@@ -65,6 +65,9 @@
 
 .similar-product-image {
     border-top-left-radius: 10px;
+    height: 200px;
+    width: 240px;
+    object-fit: cover;
     border-top-right-radius: 10px;
 }
 
@@ -201,10 +204,6 @@
     .similar-product-container {
         width: min-content;
         height: 250px;
-    }
-
-    .similar-product-image {
-        height: 150px;
     }
 
     .content-container {

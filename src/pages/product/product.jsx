@@ -18,7 +18,7 @@ const SimilarProduct = ({ product }) => {
         <li>
             <div className="similar-product-container">
                 <NavLink to={`/product/${product.ProductID}`} className="similar-product-link">
-                    <img src={product.Images} alt={product.Name} className="similar-product-image" />
+                    <img src={product.ImageURL} alt={product.Name} className="similar-product-image" />
                     <div className="similar-product-info">
                         <h3 className="similar-product-name">{product.Name}</h3>
                         <p className="similar-product-price">Ksh. {parseFloat(product.Price).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
@@ -214,7 +214,7 @@ export const ProductDetail = () => {
 
 SimilarProduct.propTypes = {
     product: PropTypes.shape({
-        Images: PropTypes.arrayOf(PropTypes.string).isRequired,
+        ImageURL: PropTypes.arrayOf(PropTypes.string).isRequired,
         Name: PropTypes.string.isRequired,
         Model: PropTypes.string.isRequired,
         Description: PropTypes.string.isRequired,
