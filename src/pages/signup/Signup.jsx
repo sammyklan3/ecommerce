@@ -45,65 +45,43 @@ export const Signup = () => {
 
   const onSubmit = async (formData) => {
     try {
-      // Check if password and confirm password match
       if (formData.password !== formData.confirmPassword) {
         setError("Passwords do not match!");
-
-        // Clear the password and username field for security reasons
+        // Clear form fields
         formData.password = "";
-        formData.username = "";
         formData.confirmPassword = "";
-
-        // Set a timer to clear the error after 3 seconds
         setTimeout(() => {
           setError(null);
-        }, 8000);
+        }, 3000);
         return;
       }
 
-      // Sending request to the server
       const response = await axiosInstance.post("/signup", formData, {
         headers: {
           "Content-Type": "application/json",
         },
       });
 
-      // If response is not 200
-      if (!response.ok) {
-        setError("Username or password incorrect");
+      console.log(response);
 
-        // Clear the password and username field for security reasons
-        formData.password = "";
-        formData.username = "";
-
-        // Set a timer to clear the error after 3 seconds
-        setTimeout(() => {
-          setError(null);
-        }, 8000);
-        return;
+      if (response.status !== 200) {
+        throw new Error("An error occurred");
       }
 
-      // If response is 200
       const data = response.data;
-      // Storing the token in localStorage
       login(data.token);
-      // Redirect upon successful login
       navigate("/");
-
-      // Catching the error
     } catch (error) {
-      setError("Account creation error");
-      // Clear the password and username field for security reasons
+      setError(error.response.data.error);
+      // Clear form fields
       formData.password = "";
-      formData.username = "";
-
-      // Set a timer to clear the error after 3 seconds
+      formData.confirmPassword = "";
       setTimeout(() => {
         setError(null);
-      }, 8000);
-      return;
+      }, 3000);
     }
   };
+
 
   const initialState = {
     username: "",
