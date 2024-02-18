@@ -19,7 +19,7 @@ export const Banner = () => {
         await new Promise(resolve => setTimeout(resolve, 500));
 
         console.log(response.data);
-        setData(response.data.result);
+        setData(response.data);
       } catch (err) {
         console.error(err);
         setError(err.message);
