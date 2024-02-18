@@ -36,13 +36,15 @@ export const Banner = () => {
           <img src={data[0].ImageName} alt={`Banner 0`} />
         </div>
       ) : data && data.length > 1 ? (
-        <Slider autoplay autoplaySpeed={3000}>
-          {data.map((banner, index) => (
-            <div key={index} className="banner">
-              <img src={banner.ImageName} alt={`Banner ${index}`} />
-            </div>
-          ))}
-        </Slider>
+        <div className="slider-container">
+          <Slider autoplay autoplaySpeed={3000} className="custom-slider">
+            {data.map((banner, index) => (
+              <div key={index} className="banner">
+                <img src={banner.ImageName} alt={`Banner ${index}`} />
+              </div>
+            ))}
+          </Slider>
+        </div>
       ) : (
         <div className="banner">
           <Loader />

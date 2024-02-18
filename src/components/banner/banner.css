@@ -24,21 +24,44 @@
   right: 20px; /* Position the right arrow 20px from the right */
 }
 
+.slider-container {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.custom-slider {
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  
+}
+
 .banner {
   display: flex;
   justify-content: center;
 }
 
 .banner img {
+  margin: auto;
+  width: 100%;
   border-radius: 10px;
   object-fit: cover;
-  width: max-content;
-  max-height: max-content;
+  height: 400px;
 }
 
 @media only screen and (min-width: 200px) and (max-width: 760px) {
   .banner img {
     border-radius: 0;
     max-height: none;
+  }
+
+  .slider-container {
+    width: 100%;
+  }
+
+  .banner img {
+    height: 230px;
   }
 }
