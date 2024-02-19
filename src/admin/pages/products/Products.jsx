@@ -35,9 +35,6 @@ export const Products = () => {
             try {
                 const response = await axiosInstance.get("/products");
 
-                // Simulate data fetching for 2 seconds
-                await new Promise(resolve => setTimeout(resolve, 1000));
-
                 if (response.status !== 200) {
                     setError(response.data.error)
                     setLoading(false)
@@ -60,10 +57,7 @@ export const Products = () => {
     const handleDelete = async (productId) => {
         try {
             setLoading(true);
-            const response = await axiosInstance.delete(`/products/${productId}`);
-
-            // Simulate data fetching for 2 seconds
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            const response = await axiosInstance.delete(`/product/${productId}`);
 
             if (response.status === 204) {
                 // Product successfully deleted
