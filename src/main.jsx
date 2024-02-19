@@ -19,7 +19,7 @@ import { ProductDetail } from "./pages/product/product";
 import { CartProvider } from './context/Cart.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 const router = createBrowserRouter([
   {
