@@ -19,6 +19,7 @@ import { ProductDetail } from "./pages/product/product";
 import { CartProvider } from './context/Cart.jsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const router = createBrowserRouter([
   {
@@ -72,6 +73,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <AuthProvider>
         <CartProvider>
           <Analytics />
+          <SpeedInsights />
           <RouterProvider router={router} />
         </CartProvider>
       </AuthProvider>
