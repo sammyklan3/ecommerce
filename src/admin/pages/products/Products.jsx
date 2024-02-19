@@ -102,9 +102,7 @@ export const Products = () => {
 
 
     if (loading) {
-        return (
-            <Loader />
-        )
+        return <Loader />;
     } else {
         return (
             <>
@@ -112,7 +110,7 @@ export const Products = () => {
                     <SideNav />
                     {error ? (
                         <p>Error: {error}</p>
-                    ) : data && data.length > 0 ? (
+                    ) : (
                         <div className="products-container">
                             <div className="actions-container">
                                 <input
@@ -124,40 +122,29 @@ export const Products = () => {
                                 />
                                 <NavLink to="/admin/createproduct">+</NavLink>
                             </div>
-                            <p>Products found: {filteredData.length}</p>
-                            <header className="products-header">
-                                <h3>Image</h3>
-                                <h3>Name</h3>
-                                <h3>Description</h3>
-                                <h3>Price</h3>
-                                <h3>Quantity</h3>
-                                <h3> </h3>
-                            </header>
-                            <ul className="products-container-list">
-                                <ProductCard data={filteredData} onDelete={handleDelete} />
-                            </ul>
-                        </div>
-
-                    ) : (
-                        <>
-                            <div className="products-container">
-                                <div className="actions-container">
-                                    <input
-                                        type="text"
-                                        placeholder="Search"
-                                        value={searchTerm}
-                                        onChange={handleSearchChange}
-                                        id="search"
-                                    />
-                                    <NavLink to="/admin/createproduct">+</NavLink>
-                                </div>
-                                <p>Products found: {filteredData.length}</p>
+                            {data && data.length > 0 ? (
+                                <>
+                                    <p>Products found: {filteredData.length}</p>
+                                    <header className="products-header">
+                                        <h3>Image</h3>
+                                        <h3>Name</h3>
+                                        <h3>Description</h3>
+                                        <h3>Price</h3>
+                                        <h3>Quantity</h3>
+                                        <h3> </h3>
+                                    </header>
+                                    <ul className="products-container-list">
+                                        <ProductCard data={filteredData} onDelete={handleDelete} />
+                                    </ul>
+                                </>
+                            ) : (
                                 <p>No available products</p>
-                            </div>
-                        </>
+                            )}
+                        </div>
                     )}
                 </div>
             </>
-        )
+        );
     }
 }
+
