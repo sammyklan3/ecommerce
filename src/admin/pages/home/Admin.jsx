@@ -29,9 +29,6 @@ export const Admin = () => {
                     }
                 });
 
-                // Simulate data fetching for 2 seconds
-                await new Promise(resolve => setTimeout(resolve, 2000));
-
                 if (response.status !== 200) {
                     setError("An error occurred while fetching!");
                     setLoading(false);
