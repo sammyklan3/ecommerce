@@ -57,13 +57,17 @@ export const Admin = () => {
                 <p>Please sign in</p>
             </>
         )
-    } else if (role !== "admin") {
-        return (
-            <>
-                <p>{error}</p>
-            </>
-        )
-    } else if (loading) {
+    } 
+    
+    // else if (role !== "admin") {
+    //     return (
+    //         <>
+    //             <p>{error}</p>
+    //         </>
+    //     )
+    // } 
+    
+    else if (loading) {
         return (
             <>
                 <Loader />
