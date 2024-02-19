@@ -69,6 +69,16 @@ hr {
     margin-top: 10px;
 }
 
+.btn-submit-loading {
+    background-color: rgb(196, 192, 192);
+    border-radius: 10px;
+    display: flex;
+    width: 100%;
+    margin-top: 10px;
+    height: max-content;
+    justify-content: center;
+}
+
 .btn-submit:hover {
     color: black;
     box-shadow: 0 0 15px rgb(4, 0, 255);
@@ -105,6 +115,25 @@ hr {
 .error-txt {
     color: red;
 }
+
+.login-loading-spinner {
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-top: 3px solid #777;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
 
 
 /* Apply styles when the viewport width is between 600 and 500 pixels */

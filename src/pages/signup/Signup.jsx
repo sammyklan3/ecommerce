@@ -10,6 +10,7 @@ export const Signup = () => {
 
   const { login } = useAuth();
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const fields = [
@@ -56,6 +57,8 @@ export const Signup = () => {
         return;
       }
 
+      setLoading(true);
+
       const response = await axiosInstance.post("/signup", formData, {
         headers: {
           "Content-Type": "application/json",
@@ -65,13 +68,17 @@ export const Signup = () => {
       console.log(response);
 
       if (response.status !== 200) {
+        setLoading(false);
         throw new Error("An error occurred");
       }
 
+      setLoading(false);
       const data = response.data;
       login(data.token);
       navigate("/");
+
     } catch (error) {
+      setLoading(false);
       setError(error.response.data.error);
       // Clear form fields
       formData.password = "";
@@ -92,7 +99,7 @@ export const Signup = () => {
     <div className="signup-container">
       {/* Back button */}
       <p className="arrow-back" onClick={handleBack}><FaArrowLeft /><p>Back</p></p>
-      <Form fields={fields} onSubmit={onSubmit} initialState={initialState} title="Create an account" btnTxt="Create" error={error} loginLink="/login" />
+      <Form fields={fields} onSubmit={onSubmit} initialState={initialState} title="Create an account" btnTxt="Create" error={error} loginLink="/login" loading = {loading}/>
     </div>
   )
 }

@@ -3,7 +3,7 @@ import { useState } from "react";
 import PropTypes from 'prop-types';
 import { NavLink } from "react-router-dom";
 
-export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error, signupLink, loginLink }) => {
+export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error, signupLink, loginLink, loading }) => {
   const [formState, setFormState] = useState(initialState);
 
   const handleChange = (e, fieldName) => {
@@ -52,9 +52,17 @@ export const Form = ({ fields, onSubmit, initialState, title, btnTxt, error, sig
         ))}
 
         <br />
+        {loading ? (
+          <button type="submit" disabled={loading} className="btn-submit-loading">
+          <div className="login-loading-spinner">
+
+          </div>
+        </button>
+        ) : (
         <button type="submit" className="btn-submit" onClick={handleSubmit}>
           {btnTxt}
         </button>
+        )}
         <br />
         {error && (
           <>
@@ -91,6 +99,7 @@ Form.propTypes = {
   initialState: PropTypes.object,
   title: PropTypes.string,
   btnTxt: PropTypes.string,
+  loading: PropTypes.bool,
   error: PropTypes.string,
   signupLink: PropTypes.string, // URL for the sign-up page
   loginLink: PropTypes.string,
