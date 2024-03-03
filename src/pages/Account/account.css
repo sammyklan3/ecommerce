@@ -1,3 +1,36 @@
-.modal-content {
-    
+.account-container {
+    padding: 17px 6%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    gap: 2em;
+}
+
+.account-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.account-details img {
+    border-radius: 50%;
+    height: 140px;
+}
+
+.account-info small{
+    color: gray;
+}
+
+.account-content ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+}
+
+.account-content li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }

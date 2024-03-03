@@ -5,8 +5,11 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(() => localStorage.getItem("token") || '');
-  const [currentUsername, setCurrentUsername] = useState(null);
-  const [role, setRole] = useState(null);
+  const [userDetails, setUserDetails] = useState({
+    username: "",
+    userId: "",
+    role: "",
+  });
 
   useEffect(() => {
     // Only run once when the component mounts
@@ -19,8 +22,12 @@ export const AuthProvider = ({ children }) => {
           },
         });
 
-        setRole(response.data.role);
-        setCurrentUsername(response.data.user);
+        setUserDetails({
+          ...userDetails,
+          role: response.data.role,
+          username: response.data.username,
+          userId: response.data.userId,
+        });
       } catch (error) {
         console.log(error);
       }
@@ -30,7 +37,7 @@ export const AuthProvider = ({ children }) => {
     if (token) {
       fetchData();
     }
-  }, []); // Empty dependency array ensures this effect runs only once
+  }, [token]); // Include token in dependency array to run effect when token changes
 
   const login = (newToken) => {
     localStorage.setItem('token', newToken);
@@ -40,10 +47,15 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("token");
     setToken("");
+    // Clear user details on logout
+    setUserDetails({
+      username: "",
+      role: "",
+    });
   };
 
   return (
-    <AuthContext.Provider value={{ token, login, logout, currentUsername, role }}>
+    <AuthContext.Provider value={{ token, login, logout, userDetails }}>
       {children}
     </AuthContext.Provider>
   );
