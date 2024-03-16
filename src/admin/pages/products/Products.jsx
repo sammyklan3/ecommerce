@@ -5,6 +5,7 @@ import { Loader } from "../../../components/loader/Loader";
 import { SideNav } from "../../../components/adminNav/SideNav";
 import { NavLink } from "react-router-dom";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 const ProductCard = ({ data, onDelete }) => {
     return (
@@ -113,14 +114,18 @@ export const Products = () => {
                     ) : (
                         <div className="products-container">
                             <div className="actions-container">
-                                <input
-                                    type="text"
-                                    placeholder="Search"
-                                    value={searchTerm}
-                                    onChange={handleSearchChange}
-                                    id="search"
-                                />
-                                <NavLink to="/admin/createproduct">+</NavLink>
+                                <div className="search-container">
+                                    <FaMagnifyingGlass />
+
+                                    <input
+                                        type="text"
+                                        placeholder="Search"
+                                        value={searchTerm}
+                                        onChange={handleSearchChange}
+                                        id="search"
+                                    />
+                                </div>
+                                <NavLink to="/admin/createproduct">+ Add</NavLink>
                             </div>
                             {data && data.length > 0 ? (
                                 <>

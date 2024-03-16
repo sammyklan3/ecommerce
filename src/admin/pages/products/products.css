@@ -85,15 +85,27 @@ body {
     gap: 10px;
 }
 
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: rgb(44, 43, 43);
+    padding: 5px 3%;
+    border-radius: 19px;
+    height: 3em;
+
+}
+
+.search-container input {
+    width: 100%;
+    border: none;
+}
+
 .actions-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 5px;
-}
-
-.actions-container input {
-    width: max-content;
 }
 
 .actions-container a {

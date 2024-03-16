@@ -2,6 +2,7 @@ import "./admin.css";
 import { SideNav } from "../../../components/adminNav/SideNav";
 import { useEffect, useState } from "react";
 import { FaTag } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
 import { FaShoppingBag } from "react-icons/fa";
 import { FaRegMoneyBillAlt } from "react-icons/fa";
 import { Loader } from "../../../components/loader/Loader";
@@ -52,6 +53,7 @@ export const Admin = () => {
         return (
             <>
                 <p>Please sign in</p>
+                <NavLink to="/login">Login</NavLink>
             </>
         )
     } 
